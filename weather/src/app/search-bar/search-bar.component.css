@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
+
+/* Base styling */
+
+body {
+    width: 430px;
+    margin: 0 auto;
+    background-color: #F7CAC9;
+    font-family: 'Raleway', sans-serif;
+}
+
+.search__container {
+        padding-top: 64px;
+    }
+
+.search__title {
+        font-size: 22px;
+        font-weight: 900;
+        text-align: center;
+        color:white
+    }
+
+.search__input {
+        width: 100%;
+        padding: 12px 24px;
+
+        background-color: transparent;
+        transition: transform 250ms ease-in-out;
+        font-size: 14px;
+        line-height: 18px;
+
+        color: white;
+        background-color: transparent;
+
+
+      background-image: url("../../assets/search.png");
+        background-repeat: no-repeat;
+        background-size: 18px 18px;
+        background-position: 95% center;
+        border-radius: 50px;
+        border: 1px solid white;
+        transition: all 250ms ease-in-out;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+
+    }
+
+.search__input::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 1.5px;
+        }
+
+.search__input:hover,
+        .search__input:focus {
+            padding: 12px 0;
+            outline: 0;
+            border: 1px solid transparent;
+            border-bottom: 1px solid white;
+            border-radius: 0;
+            background-position: 100% center;
+        }
+
+        .typeOfTemperature{
+          margin-top: 64px;
+          background-color: white;
+          border-radius: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-top:8px;
+          padding-bottom: 8px;
+          max-width: 150px;
+        }
+        .tempC{
+          margin-right: 10px;
+          text-decoration: none;
+          color: rgb(17, 182, 236);
+          padding: 0px;
+          border: 0px;
+          background-color: transparent;
+          font-weight: bold;
+          font-size: large;
+
+
+        }
+        .tempF{
+          margin-left: 10px;
+          text-decoration: none;
+          color: rgb(17, 182, 236);
+          padding: 0px;
+          border: 0px;
+          background-color: transparent;
+          font-weight: bold;
+          font-size: large;
+        }
+        .lineT{
+          font-weight: bold;
+          color: gray;
+        }
