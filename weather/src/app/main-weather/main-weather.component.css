@@ -1,0 +1,9 @@
+#tempContainer{
+  padding-top: 80px;
+}
+
+html { box-sizing: border-box; }
+html *,
+html *:before,
+html *:after { box-sizing: inherit; }
+
