@@ -1,1 +1,19 @@
-<p>week-temp works!</p>
+  <div class="row" >
+      <div class="col-md-1 text-center" *ngFor="let day of daysOfWeek">
+        <div class="row">
+          <div class="col-md-12 pb-2">
+            {{day | date:'EEE'}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div style="background-color: rgba(218, 23, 23, 0.26); border-radius: 100px; width: 50px; padding-top: 10px;">
+              <img src="assets/cloud.png" alt="" style="width: 50px;">
+              <p style="padding-top: 10px; padding-bottom: 10px;">1&#176;</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+
