@@ -10,8 +10,8 @@
       <div class="detailsDiv">
         <div class="row">
           <div class="col-md-6 pt-4 pb-4">
-            <h6 id="detail-h6">SUNRISE</h6>
-            <h4 id="detail-h4">6:47am</h4>
+            <h6 id="detail-h6">UV INDEX</h6>
+            <h4 id="detail-h4">{{uvIndex}}</h4>
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <img class="detailIcons" src="assets/sunrise1.png" alt="">
@@ -23,8 +23,8 @@
       <div class="detailsDiv">
         <div class="row">
           <div class="col-md-6 pt-4 pb-4">
-            <h6 id="detail-h6">SUNSET</h6>
-            <h4 id="detail-h4">5:04pm</h4>
+            <h6 id="detail-h6">AIR</h6>
+            <h4 id="detail-h4">{{air}}</h4>
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <img class="detailIcons" src="assets/sunset.png" alt="">
@@ -37,7 +37,7 @@
         <div class="row">
           <div class="col-md-6 pt-4 pb-4">
             <h6 id="detail-h6">PRECIPITATION</h6>
-            <h4 id="detail-h4">60%</h4>
+            <h4 id="detail-h4">{{precipitation}}%</h4>
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <img class="detailIcons" src="assets/drop.png" alt="">
@@ -50,7 +50,7 @@
         <div class="row">
           <div class="col-md-6 pt-4 pb-4">
             <h6 id="detail-h6">HUMIDITY</h6>
-            <h4 id="detail-h4">15%</h4>
+            <h4 id="detail-h4">{{humidity}}%</h4>
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <img class="detailIcons" src="assets/humidity.png" alt="">
@@ -65,7 +65,7 @@
         <div class="row">
           <div class="col-md-6 pt-4 pb-4">
             <h6 id="detail-h6">WIND</h6>
-            <h4 id="detail-h4">17km/h</h4>
+            <h4 id="detail-h4">{{wind}}km/h</h4>
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <img class="detailIcons" src="assets/wind.png" alt="">
@@ -78,7 +78,7 @@
         <div class="row">
           <div class="col-md-6 pt-4 pb-4">
             <h6 id="detail-h6">PRESSURE</h6>
-            <h4 id="detail-h4">1021 hpa</h4>
+            <h4 id="detail-h4">{{pressure| number:'1.0-0'}} mb</h4>
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <img class="detailIcons" src="assets/atmospheric.png" alt="">
@@ -91,7 +91,7 @@
         <div class="row">
           <div class="col-md-6 pt-4 pb-4">
             <h6 id="detail-h6">FEELS LIKE</h6>
-            <h4 id="detail-h4">12.6&#176;</h4>
+            <h4 id="detail-h4">{{feelsLike}}&#176;</h4>
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <img class="detailIcons" src="assets/sunrise1.png" alt="">
@@ -104,7 +104,7 @@
         <div class="row">
           <div class="col-md-6 pt-4 pb-4">
             <h6 id="detail-h6">VISIBILITY</h6>
-            <h4 id="detail-h4">30 km</h4>
+            <h4 id="detail-h4">{{visibility}} km</h4>
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <img class="detailIcons" src="assets/eye.png" alt="">

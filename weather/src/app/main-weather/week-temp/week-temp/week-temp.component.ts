@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { WeatherService } from 'src/app/weather-service/weather.service';
 
 @Component({
   selector: 'app-week-temp',
@@ -7,7 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class WeekTempComponent {
 
-  constructor(){}
+  constructor(private weatherService:WeatherService){}
 
 
 
@@ -15,13 +16,16 @@ export class WeekTempComponent {
 
   ngOnInit(){
 
-   for(let i = 0; i < 7; i++) {
+   for(let i = 0; i < 5; i++) {
      const day = new Date();
      day.setDate(day.getDate() + i);
      this.daysOfWeek.push(day);
      }
 
 
+
    }
+
+
 
 }
