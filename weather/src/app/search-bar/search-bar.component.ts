@@ -53,12 +53,15 @@ export class SearchBarComponent {
         let maxTemp = weatherResponse['DailyForecasts'][0]['Temperature']['Maximum'].Value;
         let currentDate = new Date (weatherResponse['DailyForecasts'][0].Date);
         let air = weatherResponse['DailyForecasts'][0]['AirAndPollen'][0].Category;
+        let fiveDaysWeather = weatherResponse['DailyForecasts'];
+
 
         const fewDaysWeather = new FewDaysWeatherModel(
           minTemp,
           maxTemp,
           currentDate,
-          air
+          air,
+          fiveDaysWeather
 
         );
 

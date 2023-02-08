@@ -10,9 +10,10 @@ export class WeekTempComponent {
 
   constructor(private weatherService:WeatherService){}
 
-
+  @Input() id:number;
 
   daysOfWeek:Date[] = [];
+  fiveDaysWeather:Object;
 
   ngOnInit(){
 
@@ -22,7 +23,9 @@ export class WeekTempComponent {
      this.daysOfWeek.push(day);
      }
 
+this.weatherService.onSendFewDaysWeather.subscribe((response => {this.fiveDaysWeather = response}));
 
+console.log(this.id);
 
    }
 
