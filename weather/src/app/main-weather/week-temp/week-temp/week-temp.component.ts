@@ -15,6 +15,8 @@ export class WeekTempComponent {
   daysOfWeek:Date[] = [];
   fiveDaysWeather:Object;
 
+
+
   ngOnInit(){
 
    for(let i = 0; i < 5; i++) {
@@ -23,9 +25,9 @@ export class WeekTempComponent {
      this.daysOfWeek.push(day);
      }
 
-this.weatherService.onSendFewDaysWeather.subscribe((response => {this.fiveDaysWeather = response}));
+this.weatherService.onSendFewDaysWeather.subscribe((response => {this.fiveDaysWeather = response.fiveDays}));
 
-console.log(this.id);
+
 
    }
 

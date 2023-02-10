@@ -15,6 +15,7 @@ export class WeatherService {
   onSendCity = new Subject<CityModel>();
   onSendFewDaysWeather = new Subject<FewDaysWeatherModel>();
   onSendCurrentConditions = new Subject<CurrentConditionsModel>();
+  onSendTypeOfValue = new Subject<boolean>(); // saljemo vrednost true ili false u zavisnosti da li se klikne na celsius ili farenheit
 
 
  apiKey ='NlbyiKhTea06qQY7ajXpx93G8Dry4UtE';

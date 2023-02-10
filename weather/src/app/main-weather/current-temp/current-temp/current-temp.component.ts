@@ -14,16 +14,28 @@ constructor(private weatherService:WeatherService){}
 city:string; //ime grada
 country:string; // ime drzave
 
-currentTemp:number; //trenutna tremperatura
+currentTempMetric:number; //trenutna tremperatura
+currentTempImperial:number;
 
 currentDate:Date; //danasnji datum
+
+typeOfValue:boolean;   //ovde postavljamo vrednost true ili false ,kada se klikne na dugme celsius ili farenhet
+
+
 ngOnInit(){
 
   this.weatherService.onSendCity.subscribe((responseCity => {this.city = responseCity.cityName; this.country = responseCity.countryName}));
 
   this.weatherService.onSendFewDaysWeather.subscribe((responseWeather => {this.currentDate = responseWeather.currentDate;}));
 
-  this.weatherService.onSendCurrentConditions.subscribe((responseCurrentCond => {this.currentTemp = responseCurrentCond.tempMetric}));
+  this.weatherService.onSendCurrentConditions.subscribe((responseCurrentCond => {
+
+    this.currentTempMetric = responseCurrentCond.tempMetric;
+    this.currentTempImperial = responseCurrentCond.tempImperial;
+
+}));
+
+this.weatherService.onSendTypeOfValue.subscribe((valueResponse => {this.typeOfValue = valueResponse}));
 
 
 }

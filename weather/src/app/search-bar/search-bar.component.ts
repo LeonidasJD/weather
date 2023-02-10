@@ -17,18 +17,31 @@ export class SearchBarComponent {
 
   cityKey:string; //id grada koji sluzi za prognozu
 
-
-
-
-
-
+  tempInFarenheit = false;
 
   ngOnInit(){
-
-
+    
   };
 
+  onFarenheit(){ //metoda kojom ispisujemo vrednosti u farenheit i miles
+
+    this.tempInFarenheit = true;
+    console.log(this.tempInFarenheit);
+
+    this.weatherService.onSendTypeOfValue.next(this.tempInFarenheit);
+
+  }
+
+  onCelsius(){ //metoda kojom postavljamo vrednost na celsius i km/h
+    this.tempInFarenheit = false;
+    console.log(this.tempInFarenheit);
+
+    this.weatherService.onSendTypeOfValue.next(this.tempInFarenheit);
+  }
+
   searchCity(){
+
+    this.weatherService.onSendTypeOfValue.next(this.tempInFarenheit);
 
     this.weatherService.getCity(this.city).subscribe(response => {
       console.log(response);
@@ -45,7 +58,7 @@ export class SearchBarComponent {
 
       this.weatherService.onSendCity.next(city);
 
-      this.weatherService.getFewDaysWeather(this.cityKey).subscribe(weatherResponse => {           //preuzimanje informacija o prognozi za odredjeni grad
+      this.weatherService.getFewDaysWeather(this.cityKey).subscribe(weatherResponse => {           //preuzimanje informacija o prognozi za odredjeni grad za 5 dana 
         console.log( weatherResponse);
 
 
@@ -71,10 +84,11 @@ export class SearchBarComponent {
 
         })
 
-        this.weatherService.getCurrentCondition(this.cityKey).subscribe((current => {
+        this.weatherService.getCurrentCondition(this.cityKey).subscribe((current => { //preuzimanje prognoze za trenutni dan
           console.log(current);
 
           let tempMetric = current[0]['Temperature']['Metric'].Value;
+          let tempImperial = current[0]['Temperature']['Imperial'].Value
           let humidity = current[0].IndoorRelativeHumidity;
           let uvIndex = current[0].UVIndexText;
           let percipitation = current[0]['Precip1hr']['Metric'].Value;
@@ -86,6 +100,7 @@ export class SearchBarComponent {
           if(tempMetric !=undefined || tempMetric !=null){
             const cuurentCondition = new CurrentConditionsModel(
               tempMetric,
+              tempImperial,
               humidity,
               uvIndex,
               percipitation,
@@ -100,13 +115,9 @@ export class SearchBarComponent {
 
           }
 
-
-
         }));
 
-
     });
-
 
   }
 
