@@ -10,10 +10,11 @@ export class WeekTempComponent {
 
   constructor(private weatherService:WeatherService){}
 
-  @Input() id:number;
 
   daysOfWeek:Date[] = [];
   fiveDaysWeather:Object;
+
+  typeOfValue:boolean;
 
 
 
@@ -25,9 +26,12 @@ export class WeekTempComponent {
      this.daysOfWeek.push(day);
      }
 
-this.weatherService.onSendFewDaysWeather.subscribe((response => {this.fiveDaysWeather = response.fiveDays}));
+  this.weatherService.onSendFewDaysWeather.subscribe((response => {
+  this.fiveDaysWeather = response.fiveDays;
 
+}));
 
+  this.weatherService.onSendTypeOfValue.subscribe((valueResponse => {this.typeOfValue = valueResponse}));
 
    }
 

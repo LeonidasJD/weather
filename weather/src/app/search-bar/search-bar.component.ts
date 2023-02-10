@@ -26,7 +26,6 @@ export class SearchBarComponent {
   onFarenheit(){ //metoda kojom ispisujemo vrednosti u farenheit i miles
 
     this.tempInFarenheit = true;
-    console.log(this.tempInFarenheit);
 
     this.weatherService.onSendTypeOfValue.next(this.tempInFarenheit);
 
@@ -34,7 +33,6 @@ export class SearchBarComponent {
 
   onCelsius(){ //metoda kojom postavljamo vrednost na celsius i km/h
     this.tempInFarenheit = false;
-    console.log(this.tempInFarenheit);
 
     this.weatherService.onSendTypeOfValue.next(this.tempInFarenheit);
   }
@@ -92,10 +90,14 @@ export class SearchBarComponent {
           let humidity = current[0].IndoorRelativeHumidity;
           let uvIndex = current[0].UVIndexText;
           let percipitation = current[0]['Precip1hr']['Metric'].Value;
-          let wind = current[0]['Wind']['Speed']['Metric'].Value;
-          let preasure = current[0]['Pressure']['Metric'].Value;
-          let feelsLike = current[0]['RealFeelTemperature']['Metric'].Value;
-          let visibility = current[0]['Visibility']['Metric'].Value;
+          let windMetric = current[0]['Wind']['Speed']['Metric'].Value;
+          let windImperial = current[0]['Wind']['Speed']['Imperial'].Value;
+          let preasureMetric = current[0]['Pressure']['Metric'].Value;
+          let preasureImperial = current[0]['Pressure']['Imperial'].Value;
+          let feelsLikeMetric = current[0]['RealFeelTemperature']['Metric'].Value;
+          let feelsLikeImperial = current[0]['RealFeelTemperature']['Imperial'].Value;
+          let visibilityMetric = current[0]['Visibility']['Metric'].Value;
+          let visibilityImperial = current[0]['Visibility']['Imperial'].Value;
 
           if(tempMetric !=undefined || tempMetric !=null){
             const cuurentCondition = new CurrentConditionsModel(
@@ -104,10 +106,14 @@ export class SearchBarComponent {
               humidity,
               uvIndex,
               percipitation,
-              wind,
-              preasure,
-              feelsLike,
-              visibility
+              windMetric,
+              windImperial,
+              preasureMetric,
+              preasureImperial,
+              feelsLikeMetric,
+              feelsLikeImperial,
+              visibilityMetric,
+              visibilityImperial
             );
 
 
