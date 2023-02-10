@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { WeatherService } from '../weather-service/weather.service';
 
 @Component({
   selector: 'app-main-weather',
@@ -8,8 +9,10 @@ import { Component } from '@angular/core';
 export class MainWeatherComponent {
 
 
+ngOnInit(){
 
 
+}
 }
 
 
