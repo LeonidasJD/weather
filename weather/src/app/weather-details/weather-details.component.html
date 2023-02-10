@@ -65,7 +65,8 @@
         <div class="row">
           <div class="col-md-6 pt-4 pb-4">
             <h6 id="detail-h6">WIND</h6>
-            <h4 id="detail-h4">{{wind}}km/h</h4>
+            <h4 id="detail-h4" *ngIf="typeOfValue === false">{{windMetric}}km/h</h4>
+            <h4 id="detail-h4" *ngIf="typeOfValue === true">{{windImperial}}mi/h</h4>
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <img class="detailIcons" src="assets/wind.png" alt="">
@@ -78,7 +79,8 @@
         <div class="row">
           <div class="col-md-6 pt-4 pb-4">
             <h6 id="detail-h6">PRESSURE</h6>
-            <h4 id="detail-h4">{{pressure| number:'1.0-0'}} mb</h4>
+            <h4 id="detail-h4" *ngIf="typeOfValue === false">{{pressureMetric| number:'1.0-0'}} mb</h4>
+            <h4 id="detail-h4" *ngIf="typeOfValue === true">{{pressureImperial| number:'1.0-0'}} inHg</h4>
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <img class="detailIcons" src="assets/atmospheric.png" alt="">
@@ -91,7 +93,8 @@
         <div class="row">
           <div class="col-md-6 pt-4 pb-4">
             <h6 id="detail-h6">FEELS LIKE</h6>
-            <h4 id="detail-h4">{{feelsLike}}&#176;</h4>
+            <h4 id="detail-h4" *ngIf="typeOfValue === false">{{feelsLikeMetric}}&#176;</h4>
+            <h4 id="detail-h4" *ngIf="typeOfValue === true">{{feelsLikeImperial}}&#176;</h4>
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <img class="detailIcons" src="assets/sunrise1.png" alt="">
@@ -104,7 +107,8 @@
         <div class="row">
           <div class="col-md-6 pt-4 pb-4">
             <h6 id="detail-h6">VISIBILITY</h6>
-            <h4 id="detail-h4">{{visibility}} km</h4>
+            <h4 id="detail-h4" *ngIf="typeOfValue === false">{{visibilityMetric}} km</h4>
+            <h4 id="detail-h4"  *ngIf="typeOfValue === true">{{visibilityImperial}} mi</h4>
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <img class="detailIcons" src="assets/eye.png" alt="">

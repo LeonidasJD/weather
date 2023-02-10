@@ -1,5 +1,5 @@
   <div class="row" >
-      <div class="col-md-2" *ngFor="let day of daysOfWeek; let i = index" >
+      <div class="col-md-2" *ngFor="let day of daysOfWeek; let i = index">
         <div class="row">
           <div class="col-md-12 text-center" *ngIf="i === 0">
              {{'Now'}}
@@ -11,10 +11,15 @@
         <div class="row">
           <div class="col-md-12 d-flex justify-content-center">
             <div class="temp">
-              <img src="assets/cloud.png" alt="" style="width: 50px;">
-              <p style=" padding-bottom: 3px; margin: 0px;">{{fiveDaysWeather[i]['Temperature']['Maximum'].Value | number:'1.0-0'}}&#176;</p>
-              <hr style="margin: 0px;">
-              <p style="padding-top: 3px; padding-bottom: 10px; margin: 0px;">{{fiveDaysWeather[i]['Temperature']['Minimum'].Value | number:'1.0-0'}}&#176;</p>
+              <img src="assets/cloud.png" alt="" style="width: 50px;" *ngIf="typeOfValue === false">
+              <p style=" padding-bottom: 3px; margin: 0px;" *ngIf="typeOfValue === false">{{fiveDaysWeather[i]['Temperature']['Maximum'].Value | number:'1.0-0'}}&#176;</p>
+              <hr style="margin: 0px;" *ngIf="typeOfValue === false">
+              <p style="padding-top: 3px; padding-bottom: 10px; margin: 0px;" *ngIf="typeOfValue === false">{{fiveDaysWeather[i]['Temperature']['Minimum'].Value | number:'1.0-0'}}&#176;</p>
+
+              <img src="assets/cloud.png" alt="" style="width: 50px;" *ngIf="typeOfValue === true">
+              <p style=" padding-bottom: 3px; margin: 0px;" *ngIf="typeOfValue === true">{{(fiveDaysWeather[i]['Temperature']['Minimum'].Value * 1.8) + 32 | number:'1.0-0'}}&#176;</p>
+              <hr style="margin: 0px;" *ngIf="typeOfValue === true">
+              <p style="padding-top: 3px; padding-bottom: 10px; margin: 0px;" *ngIf="typeOfValue === true">{{(fiveDaysWeather[i]['Temperature']['Minimum'].Value * 1.8) + 32 | number:'1.0-0'}}&#176;</p>
             </div>
           </div>
         </div>
