@@ -29,12 +29,13 @@ body {
         transition: transform 250ms ease-in-out;
         font-size: 14px;
         line-height: 18px;
+        font-family: 'Questrial';
 
         color: white;
         background-color: transparent;
 
 
-   
+
         background-repeat: no-repeat;
         background-size: 18px 18px;
         background-position: 95% center;
@@ -81,6 +82,7 @@ body {
           background-color: transparent;
           font-weight: bold;
           font-size: large;
+          font-family: 'Questrial';
 
 
         }
@@ -93,6 +95,7 @@ body {
           background-color: transparent;
           font-weight: bold;
           font-size: large;
+          font-family: 'Questrial';
         }
         .lineT{
           font-weight: bold;
@@ -106,5 +109,5 @@ body {
           border-radius: 50px;
           max-width: 175px;
           margin: auto;
-          
+
         }

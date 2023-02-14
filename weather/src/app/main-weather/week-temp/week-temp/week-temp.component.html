@@ -1,10 +1,10 @@
   <div class="row" >
       <div class="col-md-2" *ngFor="let day of daysOfWeek; let i = index" [id]="i">
         <div class="row">
-          <div class="col-md-12 text-center" *ngIf="i === 0">
+          <div class="col-md-12 text-center" style="font-family: Questrial;" *ngIf="i === 0">
              {{'Now'}}
           </div>
-          <div class="col-md-12 text-center" *ngIf="i !=0">
+          <div class="col-md-12 text-center" style="font-family: Questrial;" *ngIf="i !=0">
             {{ day | date:'EEE'}}
           </div>
         </div>
@@ -40,9 +40,9 @@
               <img  src="assets/storm-night.png" alt="" style="width: 50px;" *ngIf="typeOfValue === false && fiveDaysWeather[i]['Day'].Icon === 41 || fiveDaysWeather[i]['Day'].Icon === 42">
               <img  src="assets/night-snow.png" alt="" style="width: 50px;" *ngIf="typeOfValue === false && fiveDaysWeather[i]['Day'].Icon === 44">
 
-              <p style=" padding-bottom: 3px; margin: 0px;" *ngIf="typeOfValue === false">{{fiveDaysWeather[i]['Temperature']['Maximum'].Value | number:'1.0-0'}}&#176;</p>
+              <p style=" padding-bottom: 3px; margin: 0px; font-family:'Questrial';"*ngIf="typeOfValue === false">{{fiveDaysWeather[i]['Temperature']['Maximum'].Value | number:'1.0-0'}}&#176;</p>
               <hr style="margin: 0px;" *ngIf="typeOfValue === false">
-              <p style="padding-top: 3px; padding-bottom: 10px; margin: 0px;" *ngIf="typeOfValue === false">{{fiveDaysWeather[i]['Temperature']['Minimum'].Value | number:'1.0-0'}}&#176;</p>
+              <p style="padding-top: 3px; padding-bottom: 10px; margin: 0px; font-family:'Questrial'" *ngIf="typeOfValue === false">{{fiveDaysWeather[i]['Temperature']['Minimum'].Value | number:'1.0-0'}}&#176;</p>
 
               <!--farenheit temp-->
               <img  src="assets/sunny.png" alt="" style="width: 50px;" *ngIf="typeOfValue === true && fiveDaysWeather[i]['Day'].Icon === 1">
@@ -71,9 +71,9 @@
               <img  src="assets/storm-night.png" alt="" style="width: 50px;" *ngIf="typeOfValue === true && fiveDaysWeather[i]['Day'].Icon === 41 || fiveDaysWeather[i]['Day'].Icon === 42">
               <img  src="assets/night-snow.png" alt="" style="width: 50px;" *ngIf="typeOfValue === true && fiveDaysWeather[i]['Day'].Icon === 44">
 
-              <p style=" padding-bottom: 3px; margin: 0px;" *ngIf="typeOfValue === true">{{(fiveDaysWeather[i]['Temperature']['Minimum'].Value * 1.8) + 32 | number:'1.0-0'}}&#176;</p>
+              <p style=" padding-bottom: 3px; margin: 0px; font-family:'Questrial'" *ngIf="typeOfValue === true">{{(fiveDaysWeather[i]['Temperature']['Minimum'].Value * 1.8) + 32 | number:'1.0-0'}}&#176;</p>
               <hr style="margin: 0px;" *ngIf="typeOfValue === true">
-              <p style="padding-top: 3px; padding-bottom: 10px; margin: 0px;" *ngIf="typeOfValue === true">{{(fiveDaysWeather[i]['Temperature']['Minimum'].Value * 1.8) + 32 | number:'1.0-0'}}&#176;</p>
+              <p style="padding-top: 3px; padding-bottom: 10px; margin: 0px; font-family:'Questrial'" *ngIf="typeOfValue === true">{{(fiveDaysWeather[i]['Temperature']['Minimum'].Value * 1.8) + 32 | number:'1.0-0'}}&#176;</p>
             </div>
           </div>
         </div>
