@@ -21,6 +21,11 @@ currentDate:Date; //danasnji datum
 
 typeOfValue:boolean;   //ovde postavljamo vrednost true ili false ,kada se klikne na dugme celsius ili farenhet
 
+weatherText:string; //pokazuje text  wremena
+
+iconPath:string; // putanja do ikonice koja se postavlja na osnovu temperature
+
+
 
 ngOnInit(){
 
@@ -32,10 +37,18 @@ ngOnInit(){
 
     this.currentTempMetric = responseCurrentCond.tempMetric;
     this.currentTempImperial = responseCurrentCond.tempImperial;
+    this.weatherText = responseCurrentCond.weatherText;
+
+
 
 }));
 
-this.weatherService.onSendTypeOfValue.subscribe((valueResponse => {this.typeOfValue = valueResponse}));
+this.weatherService.onSendTypeOfValue.subscribe((valueResponse => {this.typeOfValue = valueResponse})); // proveravamo da li je true ili false ,da li je celsius ili farenheit
+
+this.weatherService.onSendWeatherIconPath.subscribe((responseIconPath => {this.iconPath = responseIconPath}));
+
+
+
 
 
 }

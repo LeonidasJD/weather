@@ -20,7 +20,7 @@ export class SearchBarComponent {
   tempInFarenheit = false;
 
   ngOnInit(){
-    
+
   };
 
   onFarenheit(){ //metoda kojom ispisujemo vrednosti u farenheit i miles
@@ -56,7 +56,7 @@ export class SearchBarComponent {
 
       this.weatherService.onSendCity.next(city);
 
-      this.weatherService.getFewDaysWeather(this.cityKey).subscribe(weatherResponse => {           //preuzimanje informacija o prognozi za odredjeni grad za 5 dana 
+      this.weatherService.getFewDaysWeather(this.cityKey).subscribe(weatherResponse => {           //preuzimanje informacija o prognozi za odredjeni grad za 5 dana
         console.log( weatherResponse);
 
 
@@ -65,6 +65,9 @@ export class SearchBarComponent {
         let currentDate = new Date (weatherResponse['DailyForecasts'][0].Date);
         let air = weatherResponse['DailyForecasts'][0]['AirAndPollen'][0].Category;
         let fiveDaysWeather = weatherResponse['DailyForecasts'];
+        let weatherText = weatherResponse['DailyForecasts'][0]['Day'].IconPhrase;
+
+
 
 
         const fewDaysWeather = new FewDaysWeatherModel(
@@ -72,8 +75,8 @@ export class SearchBarComponent {
           maxTemp,
           currentDate,
           air,
-          fiveDaysWeather
-
+          fiveDaysWeather,
+          weatherText
         );
 
         this.weatherService.onSendFewDaysWeather.next(fewDaysWeather);
@@ -98,6 +101,8 @@ export class SearchBarComponent {
           let feelsLikeImperial = current[0]['RealFeelTemperature']['Imperial'].Value;
           let visibilityMetric = current[0]['Visibility']['Metric'].Value;
           let visibilityImperial = current[0]['Visibility']['Imperial'].Value;
+          let weatherText = current[0].WeatherText;
+          let weatherIcon = current[0].WeatherIcon;
 
           if(tempMetric !=undefined || tempMetric !=null){
             const cuurentCondition = new CurrentConditionsModel(
@@ -113,11 +118,23 @@ export class SearchBarComponent {
               feelsLikeMetric,
               feelsLikeImperial,
               visibilityMetric,
-              visibilityImperial
+              visibilityImperial,
+              weatherText,
+              weatherIcon
             );
 
 
-          this.weatherService.onSendCurrentConditions.next(cuurentCondition);
+          this.weatherService.onSendCurrentConditions.next(cuurentCondition); //salje podatke o trenutnom vremenu
+
+          this.weatherService.setWeatherIconPath(weatherIcon); // proverava koja je numericka vrednost ikonice za vreme i postavlja odredjenu ikonicu iz asets
+          this.weatherService.onSendIconPath(); //salje putanju do ikonice ,a na taj podataka se pretplacijume u komponenti current-temp
+
+
+
+
+
+
+
 
           }
 

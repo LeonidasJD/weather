@@ -10,12 +10,17 @@ export class WeekTempComponent {
 
   constructor(private weatherService:WeatherService){}
 
+@Input() id:number;
 
   daysOfWeek:Date[] = [];
   fiveDaysWeather:Object;
 
   typeOfValue:boolean;
 
+
+
+
+  iconPath:string;
 
 
   ngOnInit(){
@@ -29,11 +34,30 @@ export class WeekTempComponent {
   this.weatherService.onSendFewDaysWeather.subscribe((response => {
   this.fiveDaysWeather = response.fiveDays;
 
+
 }));
 
   this.weatherService.onSendTypeOfValue.subscribe((valueResponse => {this.typeOfValue = valueResponse}));
 
+this.weatherService.onSendWeatherIconPath.subscribe((iconResponse => {this.iconPath = iconResponse}))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    }
+
+
+
 
 
 

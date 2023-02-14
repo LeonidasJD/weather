@@ -15,14 +15,14 @@ export class WeatherDetailsComponent {
   precipitation:number;
   humidity:number;
   windMetric:number;
-  windImperial;
+  windImperial:number;
   pressureMetric:number;
   pressureImperial:number;
   feelsLikeMetric:number;
   feelsLikeImperial:number;
   visibilityMetric:number;
   visibilityImperial:number;
-  
+
 
   typeOfValue:boolean;
 
