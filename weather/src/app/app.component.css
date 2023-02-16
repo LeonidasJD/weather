@@ -3,3 +3,13 @@
   background: linear-gradient(180deg, rgba(108,215,167,1) 0%, rgba(20,176,205,1) 86%);
   height: 100vh;
 }
+
+.supportImg{
+  max-width: 130px;
+}
+
+#supportDiv{
+  display: flex;
+  justify-content: center;
+  margin-top: 35px
+}
