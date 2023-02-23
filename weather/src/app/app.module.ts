@@ -8,7 +8,19 @@ import { CurrentTempComponent } from './main-weather/current-temp/current-temp/c
 import { WeekTempComponent } from './main-weather/week-temp/week-temp/week-temp.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Route, RouterModule, Routes } from '@angular/router';
+import { WeatherConditionsComponent } from './weather-conditions/weather-conditions.component';
 
+const route:Routes = [
+{path: 'search', component: SearchBarComponent, children:[
+
+ {path: 'weather-conditions', component: WeatherConditionsComponent}
+]},
+
+
+
+
+]
 
 @NgModule({
   declarations: [
@@ -18,12 +30,14 @@ import { FormsModule } from '@angular/forms';
     WeatherDetailsComponent,
     CurrentTempComponent,
     WeekTempComponent,
+    WeatherConditionsComponent,
 
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(route)
   ],
   providers: [],
   bootstrap: [AppComponent]

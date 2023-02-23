@@ -10,8 +10,8 @@
   </div>
   <div class="row" style="padding-top: 17px;">
     <div class="col-md-12 text-center">
-      <h1 class="temperature" style="font-size: 100px;" *ngIf="typeOfValue ===false">{{ currentTempMetric | number: '1.0-0'}}<span>&#8451;</span></h1>
-      <h1 class="temperature" style="font-size: 100px;" *ngIf="typeOfValue ===true">{{ currentTempImperial | number: '1.0-0'}}<span>&#8457;</span></h1>
+      <h1 class="temperature" style="font-size: 100px;" *ngIf="typeOfValue ===true">{{ currentTempMetric | number: '1.0-0'}}<span>&#8451;</span></h1>
+      <h1 class="temperature" style="font-size: 100px;" *ngIf="typeOfValue ===false">{{ currentTempImperial | number: '1.0-0'}}<span>&#8457;</span></h1>
     </div>
   </div>
   <div class="row">

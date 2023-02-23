@@ -23,18 +23,20 @@ export class WeatherService {
 
 
 
- apiKey ='mlrOjCN5fkgwowYzfwgc5xBK0sRz82g9';
 
 
-getCity(city:string) {
-return this.http.get<Object>('http://dataservice.accuweather.com/locations/v1/cities/search?apikey='+this.apiKey+'&q=' + city);
+ apiKey ='DCg8DeKTJVCAWFvsSI1n90hpbNhIGbmC';
+
+
+   getCity(city:string) {
+return this.http.get<Object>('http://dataservice.accuweather.com/locations/v1/cities/search?apikey=' + this.apiKey + '&q=' + city);
 }
 
-getFewDaysWeather(cityKey:string){
+   getFewDaysWeather(cityKey:string){
   return this.http.get('http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + cityKey + '?apikey=' + this.apiKey + '&details=true&metric=true');
 }
 
-getCurrentCondition(cityKey:string){
+   getCurrentCondition(cityKey:string){
   return this.http.get('http://dataservice.accuweather.com/currentconditions/v1/' + cityKey + '?apikey=' + this.apiKey + '&details=true');
 }
 

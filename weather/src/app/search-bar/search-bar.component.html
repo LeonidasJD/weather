@@ -2,9 +2,6 @@
   <div class="col-md-10">
     <div class="search__container">
       <input  [(ngModel)]="city" class="search__input" type="text" placeholder="Add location e.g. Belgrade" >
-      <div id="search-btn">
-        <a (click)="searchCity()" style="color: white; cursor: pointer; font-family: Questrial;">Search {{city}}</a>
-      </div>
   </div>
   </div>
   <div class="col-md-2">
@@ -14,4 +11,20 @@
       <button class="tempF" (click)="onFarenheit()">F</button>
     </div>
   </div>
+  <div id="search-btn-div">
+    <button (click)="searchCity()" id="searchBtn" >Search {{city}}</button>
+  </div>
 </div>
+<div class="row" *ngIf="spinerIn">
+  <div class="col-md-12 d-flex justify-content-center" style="margin-top: 40px;">
+    <div class="spinner-border" role="status">
+    </div>
+  </div>
+</div>
+<div class="row " >
+  <div class="col-md-12">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
