@@ -17,6 +17,7 @@ export class WeatherService {
   onSendCurrentConditions = new Subject<CurrentConditionsModel>();
   onSendTypeOfValue = new Subject<boolean>(); // saljemo vrednost true ili false u zavisnosti da li se klikne na celsius ili farenheit
   onSendWeatherIconPath = new Subject<string>(); //slanje putanje ikone koja je proverena metodom setWeatherIconPat
+  onSendHourlyConditions = new Subject<Object>();
 
 
   weatherIconPath: string;
@@ -25,7 +26,7 @@ export class WeatherService {
 
 
 
- apiKey ='DCg8DeKTJVCAWFvsSI1n90hpbNhIGbmC';
+ apiKey ='p7LQ2kvh7GWbC07I6CNjXQX2IgGCdwq4';
 
 
    getCity(city:string) {
@@ -38,6 +39,10 @@ return this.http.get<Object>('http://dataservice.accuweather.com/locations/v1/ci
 
    getCurrentCondition(cityKey:string){
   return this.http.get('http://dataservice.accuweather.com/currentconditions/v1/' + cityKey + '?apikey=' + this.apiKey + '&details=true');
+}
+
+getHourlyWeather(cityKey:string){
+  return this.http.get('http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/' + cityKey + '?apikey=' + this.apiKey + '&details=true&metric=true');
 }
 
 setWeatherIconPath(weatherIconValue:number){ //proveramo na osnovu brojcane vrednosti ikone koja ikonica treba biti prikazana za trenutnu temp

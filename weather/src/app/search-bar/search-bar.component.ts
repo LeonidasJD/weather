@@ -150,6 +150,16 @@ export class SearchBarComponent {
 
           }));
 
+          this.weatherService.getHourlyWeather(this.cityKey).subscribe((hourlyResponse) => {
+            console.log(hourlyResponse)
+            let hours12 = hourlyResponse;
+
+
+            this.weatherService.onSendHourlyConditions.next(hours12);
+
+
+          })
+
         });
 
         this.router.navigate(['/search/weather-conditions']);
