@@ -1,0 +1,50 @@
+<div class="line"></div>
+<div class="row">
+  <div class="col-md-1" id="hourly" *ngFor="let hour of hours; let i = index">
+    <div class="backgorudn-Div">
+      <div class="row">
+        <div class="col-md-12">
+          <p style="font-family: Questrial;">{{hour <= 12 ? hour: hour - 12}}{{hour < 12 ? 'AM' : 'PM'}}</p>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <img  src="assets/sunny.png" alt="" style="width: 40px;" *ngIf=" hourlyConditions[i].WeatherIcon === 1">
+              <img  src="assets/mostly-sunny.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 2">
+              <img  src="assets/partly-sunny.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 3">
+              <img  src="assets/intermittent-clouds.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 4">
+              <img  src="assets/mostly-cloudy.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 6 || hourlyConditions[i].WeatherIcon === 20 || hourlyConditions[i].WeatherIcon === 23 || hourlyConditions[i].WeatherIcon === 29">
+              <img  src="assets/cloudy.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 7">
+              <img  src="assets/overcast.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 8">
+              <img  src="assets/fog.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 11">
+              <img  src="assets/showers.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 12 || hourlyConditions[i].WeatherIcon === 13 ||hourlyConditions[i].WeatherIcon === 14">
+              <img  src="assets/storm.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 15 ||hourlyConditions[i].WeatherIcon === 16 || hourlyConditions[i].WeatherIcon === 17">
+              <img  src="assets/rainy.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 18">
+              <img  src="assets/flurries.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 19 || hourlyConditions[i].WeatherIcon === 43">
+              <img  src="assets/snowflake.png" alt="" style="width: 40p;" *ngIf="hourlyConditions[i].WeatherIcon === 22">
+              <img  src="assets/ice.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 24">
+              <img  src="assets/sleet.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 25">
+              <img  src="assets/freezing-rain.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon=== 26">
+              <img  src="assets/hot.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 30">
+              <img  src="assets/cold.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 31">
+              <img  src="assets/wind.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon=== 32">
+              <img  src="assets/moon2.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 33">
+              <img  src="assets/mostly-clear.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 34 || hourlyConditions[i].WeatherIcon === 35  || hourlyConditions[i].WeatherIcon === 38">
+              <img  src="assets/fulClouds.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 36">
+              <img  src="assets/foggy-night.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 39 || hourlyConditions[i].WeatherIcon === 40">
+              <img  src="assets/storm-night.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon=== 41 || hourlyConditions[i].WeatherIcon === 42">
+              <img  src="assets/night-snow.png" alt="" style="width: 40px;" *ngIf="hourlyConditions[i].WeatherIcon === 44">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p *ngIf="typeOfValue === true " style="font-family: Questrial;"> {{hourlyConditions[i]['Temperature'].Value | number:'1.0-0'}}&#176;</p>
+          <p *ngIf="typeOfValue === false " style="font-family: Questrial;"> {{(hourlyConditions[i]['Temperature'].Value * 1.8) + 32 | number:'1.0-0'}}&#176;</p>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
