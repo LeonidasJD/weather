@@ -10,6 +10,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Route, RouterModule, Routes } from '@angular/router';
 import { WeatherConditionsComponent } from './weather-conditions/weather-conditions.component';
+import { HourlyWeatherComponent } from './main-weather/hourly-weather/hourly-weather/hourly-weather.component';
 
 const route:Routes = [
 {path: 'search', component: SearchBarComponent, children:[
@@ -31,6 +32,7 @@ const route:Routes = [
     CurrentTempComponent,
     WeekTempComponent,
     WeatherConditionsComponent,
+    HourlyWeatherComponent,
 
   ],
   imports: [
