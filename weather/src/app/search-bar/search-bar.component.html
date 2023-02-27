@@ -11,8 +11,19 @@
       <button class="tempF" (click)="onFarenheit()">F</button>
     </div>
   </div>
-  <div id="search-btn-div">
-    <button (click)="searchCity()" id="searchBtn" >Search {{city}}</button>
+</div>
+<div class="row" *ngIf="errorMessage">
+  <div class="col-md-12 d-flex flex-start">
+    <div class="errorMessageDiv">
+      <span class="errorMessage">{{errorMessage}}</span>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 d-flex justify-content-center">
+    <div id="search-btn-div">
+      <button (click)="searchCity()" id="searchBtn" >Search {{city}}</button>
+    </div>
   </div>
 </div>
 <div class="row" *ngIf="spinerIn">
@@ -23,7 +34,7 @@
 </div>
 <div class="row " >
   <div class="col-md-12">
-    <router-outlet></router-outlet>
+    <app-weather-conditions></app-weather-conditions> <!--weather conditions komponenta i sve komponente koje se nalaze u njoj-->
   </div>
 </div>
 

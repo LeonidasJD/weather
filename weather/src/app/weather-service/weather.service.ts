@@ -18,6 +18,7 @@ export class WeatherService {
   onSendTypeOfValue = new Subject<boolean>(); // saljemo vrednost true ili false u zavisnosti da li se klikne na celsius ili farenheit
   onSendWeatherIconPath = new Subject<string>(); //slanje putanje ikone koja je proverena metodom setWeatherIconPat
   onSendHourlyConditions = new Subject<Object>();
+  onSendErrorMessage = new Subject<string>();
 
 
   weatherIconPath: string;
