@@ -41,6 +41,8 @@ ngOnInit(){
 
 
 
+
+
 }));
 
 this.weatherService.onSendTypeOfValue.subscribe((valueResponse => {this.typeOfValue = valueResponse})); // proveravamo da li je true ili false ,da li je celsius ili farenheit

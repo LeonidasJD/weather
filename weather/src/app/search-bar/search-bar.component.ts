@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { CityModel } from '../shared/city-model';
 import { CurrentConditionsModel } from '../shared/current-Conditions-model';
 import { FewDaysWeatherModel } from '../shared/fewDaysWeather';
+
 import { WeatherService } from '../weather-service/weather.service';
 
 @Component({
@@ -16,7 +18,7 @@ export class SearchBarComponent {
 
   city:string; // ono sto upisemo u search
 
-  cityKey:string; //id grada koji sluzi za prognozu
+  cityKey:string = ''; //id grada koji sluzi za prognozu
 
   tempInCelsius = true;
 
@@ -24,9 +26,16 @@ export class SearchBarComponent {
 
   errorMessage = '';
 
+
+
+
   ngOnInit(){
 
+
+
   };
+
+
 
   onFarenheit(){ //metoda kojom ispisujemo vrednosti u farenheit i miles
 
@@ -46,32 +55,41 @@ export class SearchBarComponent {
 
 
 
-  searchCity(){     // izvrsava se postavljanje spinera na jednu sekundu zatim preuzimanje svih informacija iz apija a onda izvrsavanje rute i prikaz svih informacija
+  searchCity(){      // izvrsava se postavljanje spinera  zatim preuzimanje svih informacija iz apija a onda izvrsavanje rute i prikaz svih informacija
 
-
-    if(this.city){
-
+    if(!this.city){
+      this.errorMessage = "Please insert a location !"
+    }else{
       this.spinerIn = true;
       this.errorMessage = '';
 
-        setTimeout(() => {
-          this.weatherService.getCity(this.city).subscribe(response => {
-            console.log(response);
-            console.log(response[0].Key);
-            this.cityKey = response[0].Key;     //preuzimanje informacije o trazenom gradu i uzimanje njegovog ID kljuca
 
-            let cityName = response[0].EnglishName;
-            let countryName = response[0]['Country'].LocalizedName;
 
-            const city = new CityModel (
-              cityName,
-              countryName
-            );
+      this.weatherService.getCity(this.city).subscribe(
 
-            this.weatherService.onSendCity.next(city);
+        (response) => {
 
-            if(this.cityKey){}
 
+          console.log(response);
+          console.log(response[0].Key);
+          console.log(typeof response[0].Key);
+          this.cityKey = response[0].Key;
+          console.log(this.cityKey);
+
+
+
+
+                //preuzimanje informacije o trazenom gradu i uzimanje njegovog ID kljuca
+
+              let cityName = response[0].EnglishName;
+              let countryName = response[0]['Country'].LocalizedName;
+
+              const city = new CityModel (
+                cityName,
+                countryName
+              );
+
+              this.weatherService.onSendCity.next(city);
 
             this.weatherService.getFewDaysWeather(this.cityKey).subscribe(weatherResponse => {           //preuzimanje informacija o prognozi za odredjeni grad za 5 dana
               console.log( weatherResponse);
@@ -166,28 +184,16 @@ export class SearchBarComponent {
 
               })
 
-            });
+              this.router.navigate(['/search/weather-conditions']);
+              this.spinerIn = false;
 
 
+          }
+          );
 
-            this.router.navigate(['/search/weather-conditions']);
+          }
 
-
-
-            this.spinerIn = false;
-
-
-        },1000);
-    }else{
-      this.errorMessage = 'Please add a walid location !'
+        }
     }
-
-
-
-
-  }
-
-  }
-
 
 
