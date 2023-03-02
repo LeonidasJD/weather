@@ -83,9 +83,12 @@ body {
           font-weight: bold;
           font-size: large;
           font-family: 'Questrial';
-
-
+          transition: transform 0.3s ease-in-out;
         }
+        .tempC:hover{
+          transform: rotate(360deg);
+        }
+
         .tempF{
           margin-left: 10px;
           text-decoration: none;
@@ -96,6 +99,10 @@ body {
           font-weight: bold;
           font-size: large;
           font-family: 'Questrial';
+          transition: transform 0.3s ease-in-out;
+        }
+        .tempF:hover{
+          transform: rotate(360deg);
         }
         .lineT{
           font-weight: bold;
@@ -107,8 +114,15 @@ body {
           margin-top: 15px;
           border: 1px solid white;
           border-radius: 50px;
-          max-width: 175px;
+          width: 100px;
           margin: auto;
+          transition: all 0.3s ease-in-out;
+
+
+        }
+        #search-btn-div:hover{
+          width: 220px;
+
         }
 
         #searchBtn{
@@ -116,15 +130,32 @@ body {
           border-color: transparent;
           font-family: 'Questrial';
           color: white;
+          transition: all 0.3s ease;
         }
+        #searchBtn:hover{
+          color: wheat;
+        }
+
         .errorMessageDiv{
+          opacity: 0;
           background-color: rgb(247, 87, 87);
           padding-top: 5px;
           padding-bottom: 5px;
           padding-left: 25px;
           padding-right: 25px;
           border-radius: 20px;
+          transition: all 0.3s ease-in-out;
+          transform: translateX(20px);
         }
+        .errorShow{
+          opacity: 1;
+          transform: translateX(0);
+
+
+
+
+        }
+
         .errorMessage{
           font-family: 'Questrial';
           font-size: small;
