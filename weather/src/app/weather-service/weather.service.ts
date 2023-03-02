@@ -27,7 +27,7 @@ export class WeatherService {
 
 
 
- apiKey ='p7LQ2kvh7GWbC07I6CNjXQX2IgGCdwq4';
+ apiKey ='KFkusRTauGh7AB8LxoJtbNxqF1tSKZzG';
 
 
    getCity(city:string) {

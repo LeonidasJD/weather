@@ -18,7 +18,7 @@ export class SearchBarComponent {
 
   city:string; // ono sto upisemo u search
 
-  cityKey:string = ''; //id grada koji sluzi za prognozu
+  cityKey:string; //id grada koji sluzi za prognozu
 
   tempInCelsius = true;
 
@@ -57,7 +57,7 @@ export class SearchBarComponent {
 
   searchCity(){      // izvrsava se postavljanje spinera  zatim preuzimanje svih informacija iz apija a onda izvrsavanje rute i prikaz svih informacija
 
-    if(!this.city){
+    if(!this.city ){
       this.errorMessage = "Please insert a location !"
     }else{
       this.spinerIn = true;
@@ -67,12 +67,15 @@ export class SearchBarComponent {
 
       this.weatherService.getCity(this.city).subscribe(
 
-        (response) => {
+        response => {
+          if(response[0] === undefined){
+            this.errorMessage = "Please insert a valid location !"
+            this.spinerIn = false;
+          }
 
 
           console.log(response);
           console.log(response[0].Key);
-          console.log(typeof response[0].Key);
           this.cityKey = response[0].Key;
           console.log(this.cityKey);
 
@@ -90,6 +93,8 @@ export class SearchBarComponent {
               );
 
               this.weatherService.onSendCity.next(city);
+
+
 
             this.weatherService.getFewDaysWeather(this.cityKey).subscribe(weatherResponse => {           //preuzimanje informacija o prognozi za odredjeni grad za 5 dana
               console.log( weatherResponse);
@@ -182,18 +187,30 @@ export class SearchBarComponent {
                 this.weatherService.onSendHourlyConditions.next(hours12);
 
 
+
               })
 
-              this.router.navigate(['/search/weather-conditions']);
               this.spinerIn = false;
-
-
-          }
-          );
-
-          }
-
+          },
+       errorResponse=>{
+        console.log(errorResponse);
+        this.spinerIn = false;
+        switch(errorResponse.name){
+          case 'HttpErrorResponse': this.errorMessage = 'HTTP failure response !';
+          break;
         }
-    }
+      }
+      );
+}
+
+    if(this.city)
+    this.router.navigate(['/search/weather-conditions']);
+    this.spinerIn = false;
+
+
+
+
+}
+}
 
 
