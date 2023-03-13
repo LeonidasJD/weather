@@ -1,59 +1,72 @@
-  <div class="row d-flex justify-content-center" >
-      <div class="col-md-2" *ngFor="let day of daysOfWeek; let i = index" [id]="i">
-        <div class="row">
-          <div class="col-md-12 text-center" style="font-family: Questrial;" *ngIf="i === 0">
-             {{'Now'}}
-          </div>
-          <div class="col-md-12 text-center" style="font-family: Questrial;" *ngIf="i !=0">
-            {{ day | date:'EEE'}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 d-flex justify-content-center">
-            <div class="temp">
-              <!--celsius temp-->
-              <p id="iconNumber" style="width: 50px; display: none;" *ngIf="typeOfValue === true">{{fiveDaysWeather[i]['Day'].Icon}}</p>
+<div class="row d-flex justify-content-center">
+  <div class="col-md-2" *ngFor="let day of daysOfWeek; let i = index" [id]="i">
+    <div class="row">
+      <div class="col-md-12 text-center" style="font-family: Questrial;" *ngIf="i === 0">
+        {{'Now'}}
+      </div>
+      <div class="col-md-12 text-center" style="font-family: Questrial;" *ngIf="i !=0">
+        {{ day | date:'EEE'}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center">
+        <div class="temp">
+          <!--celsius temp-->
+          <p id="iconNumber" style="width: 50px; display: none;" *ngIf="typeOfValue === true">
+            {{fiveDaysWeather[i]['Day'].Icon}}</p>
 
-              <img  src="assets/sunny.png" alt="" style="width: 50px;" *ngIf="fiveDaysWeather[i]['Day'].Icon === 1">
-              <img  src="assets/mostly-sunny.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 2">
-              <img  src="assets/partly-sunny.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 3">
-              <img  src="assets/intermittent-clouds.png" alt="" style="width: 50px;" *ngIf="  fiveDaysWeather[i]['Day'].Icon === 4">
-              <img  src="assets/mostly-cloudy.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 6 || fiveDaysWeather[i]['Day'].Icon === 20 || fiveDaysWeather[i]['Day'].Icon === 23 || fiveDaysWeather[i]['Day'].Icon === 29">
-              <img  src="assets/cloudy.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 7">
-              <img  src="assets/overcast.png" alt="" style="width: 50px;" *ngIf="fiveDaysWeather[i]['Day'].Icon === 8">
-              <img  src="assets/fog.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 11">
-              <img  src="assets/showers.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 12 || fiveDaysWeather[i]['Day'].Icon === 13 || fiveDaysWeather[i]['Day'].Icon === 14">
-              <img  src="assets/storm.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 15 || fiveDaysWeather[i]['Day'].Icon === 16 || fiveDaysWeather[i]['Day'].Icon === 17">
-              <img  src="assets/rainy.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 18">
-              <img  src="assets/flurries.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 19 || fiveDaysWeather[i]['Day'].Icon === 43">
-              <img  src="assets/snowflake.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 22">
-              <img  src="assets/ice.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 24">
-              <img  src="assets/sleet.png" alt="" style="width: 50px;" *ngIf="fiveDaysWeather[i]['Day'].Icon === 25">
-              <img  src="assets/freezing-rain.png" alt="" style="width: 50px;" *ngIf="fiveDaysWeather[i]['Day'].Icon === 26">
-              <img  src="assets/hot.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 30">
-              <img  src="assets/cold.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 31">
-              <img  src="assets/wind.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 32">
-              <img  src="assets/moon2.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 33">
-              <img  src="assets/mostly-clear.png" alt="" style="width: 50px;" *ngIf="fiveDaysWeather[i]['Day'].Icon === 34 || fiveDaysWeather[i]['Day'].Icon === 35  || fiveDaysWeather[i]['Day'].Icon === 38">
-              <img  src="assets/fulClouds.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 36">
-              <img  src="assets/foggy-night.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 39 || fiveDaysWeather[i]['Day'].Icon === 40">
-              <img  src="assets/storm-night.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 41 || fiveDaysWeather[i]['Day'].Icon === 42">
-              <img  src="assets/night-snow.png" alt="" style="width: 50px;" *ngIf="fiveDaysWeather[i]['Day'].Icon === 44">
+          <img src="assets/sunny.png" alt="" style="width: 50px;" *ngIf="fiveDaysWeather[i]['Day'].Icon === 1">
+          <img src="assets/mostly-sunny.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 2">
+          <img src="assets/partly-sunny.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 3">
+          <img src="assets/intermittent-clouds.png" alt="" style="width: 50px;"
+            *ngIf="  fiveDaysWeather[i]['Day'].Icon === 4">
+          <img src="assets/mostly-cloudy.png" alt="" style="width: 50px;"
+            *ngIf=" fiveDaysWeather[i]['Day'].Icon === 6 || fiveDaysWeather[i]['Day'].Icon === 20 || fiveDaysWeather[i]['Day'].Icon === 23 || fiveDaysWeather[i]['Day'].Icon === 29">
+          <img src="assets/cloudy.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 7">
+          <img src="assets/overcast.png" alt="" style="width: 50px;" *ngIf="fiveDaysWeather[i]['Day'].Icon === 8">
+          <img src="assets/fog.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 11">
+          <img src="assets/showers.png" alt="" style="width: 50px;"
+            *ngIf=" fiveDaysWeather[i]['Day'].Icon === 12 || fiveDaysWeather[i]['Day'].Icon === 13 || fiveDaysWeather[i]['Day'].Icon === 14">
+          <img src="assets/storm.png" alt="" style="width: 50px;"
+            *ngIf=" fiveDaysWeather[i]['Day'].Icon === 15 || fiveDaysWeather[i]['Day'].Icon === 16 || fiveDaysWeather[i]['Day'].Icon === 17">
+          <img src="assets/rainy.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 18">
+          <img src="assets/flurries.png" alt="" style="width: 50px;"
+            *ngIf=" fiveDaysWeather[i]['Day'].Icon === 19 || fiveDaysWeather[i]['Day'].Icon === 43">
+          <img src="assets/snowflake.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 22">
+          <img src="assets/ice.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 24">
+          <img src="assets/sleet.png" alt="" style="width: 50px;" *ngIf="fiveDaysWeather[i]['Day'].Icon === 25">
+          <img src="assets/freezing-rain.png" alt="" style="width: 50px;" *ngIf="fiveDaysWeather[i]['Day'].Icon === 26">
+          <img src="assets/hot.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 30">
+          <img src="assets/cold.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 31">
+          <img src="assets/wind.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 32">
+          <img src="assets/moon2.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 33">
+          <img src="assets/mostly-clear.png" alt="" style="width: 50px;"
+            *ngIf="fiveDaysWeather[i]['Day'].Icon === 34 || fiveDaysWeather[i]['Day'].Icon === 35  || fiveDaysWeather[i]['Day'].Icon === 38">
+          <img src="assets/fulClouds.png" alt="" style="width: 50px;" *ngIf=" fiveDaysWeather[i]['Day'].Icon === 36">
+          <img src="assets/foggy-night.png" alt="" style="width: 50px;"
+            *ngIf=" fiveDaysWeather[i]['Day'].Icon === 39 || fiveDaysWeather[i]['Day'].Icon === 40">
+          <img src="assets/storm-night.png" alt="" style="width: 50px;"
+            *ngIf=" fiveDaysWeather[i]['Day'].Icon === 41 || fiveDaysWeather[i]['Day'].Icon === 42">
+          <img src="assets/night-snow.png" alt="" style="width: 50px;" *ngIf="fiveDaysWeather[i]['Day'].Icon === 44">
 
-              <p style=" padding-bottom: 3px; margin: 0px; font-family:'Questrial';"*ngIf="typeOfValue === true">{{fiveDaysWeather[i]['Temperature']['Maximum'].Value | number:'1.0-0'}}&#176;</p>
-              <hr style="margin: 0px;" *ngIf="typeOfValue === true">
-              <p style="padding-top: 3px; padding-bottom: 10px; margin: 0px; font-family:'Questrial'" *ngIf="typeOfValue === true">{{fiveDaysWeather[i]['Temperature']['Minimum'].Value | number:'1.0-0'}}&#176;</p>
+          <p style=" padding-bottom: 3px; margin: 0px; font-family:'Questrial';" *ngIf="typeOfValue === true">
+            {{fiveDaysWeather[i]['Temperature']['Maximum'].Value | number:'1.0-0'}}&#176;</p>
+          <hr style="margin: 0px;" *ngIf="typeOfValue === true">
+          <p style="padding-top: 3px; padding-bottom: 10px; margin: 0px; font-family:'Questrial'"
+            *ngIf="typeOfValue === true">{{fiveDaysWeather[i]['Temperature']['Minimum'].Value | number:'1.0-0'}}&#176;
+          </p>
 
-              <!--farenheit temp-->
+          <!--farenheit temp-->
 
 
-              <p style=" padding-bottom: 3px; margin: 0px; font-family:'Questrial'" *ngIf="typeOfValue === false">{{(fiveDaysWeather[i]['Temperature']['Minimum'].Value * 1.8) + 32 | number:'1.0-0'}}&#176;</p>
-              <hr style="margin: 0px;" *ngIf="typeOfValue === false">
-              <p style="padding-top: 3px; padding-bottom: 10px; margin: 0px; font-family:'Questrial'" *ngIf="typeOfValue === false">{{(fiveDaysWeather[i]['Temperature']['Minimum'].Value * 1.8) + 32 | number:'1.0-0'}}&#176;</p>
-            </div>
-          </div>
+          <p style=" padding-bottom: 3px; margin: 0px; font-family:'Questrial'" *ngIf="typeOfValue === false">
+            {{(fiveDaysWeather[i]['Temperature']['Minimum'].Value * 1.8) + 32 | number:'1.0-0'}}&#176;</p>
+          <hr style="margin: 0px;" *ngIf="typeOfValue === false">
+          <p style="padding-top: 3px; padding-bottom: 10px; margin: 0px; font-family:'Questrial'"
+            *ngIf="typeOfValue === false">{{(fiveDaysWeather[i]['Temperature']['Minimum'].Value * 1.8) + 32 |
+            number:'1.0-0'}}&#176;</p>
         </div>
       </div>
-      </div>
-
-
+    </div>
+  </div>
+</div>

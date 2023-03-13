@@ -1,14 +1,13 @@
+.backgorudn-Div {
 
-.backgorudn-Div{
-
-    text-align: center;
-    background-color: rgba(48, 45, 45, 0.26);
-     border-radius: 100px;
-     width: 50px;
-     padding-top: 10px;
+  text-align: center;
+  background-color: rgba(48, 45, 45, 0.26);
+  border-radius: 100px;
+  width: 50px;
+  padding-top: 10px;
 }
 
-.line{
+.line {
   margin-top: 25px;
   margin-bottom: 25px;
   max-width: auto;

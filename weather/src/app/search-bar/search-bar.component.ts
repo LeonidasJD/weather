@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
-import { CityModel } from '../shared/city-model';
-import { CurrentConditionsModel } from '../shared/current-Conditions-model';
-import { FewDaysWeatherModel } from '../shared/fewDaysWeather';
+import { CityModel } from '../shared/models/city-model';
+import { CurrentConditionsModel } from '../shared/models/current-Conditions-model';
+import { FewDaysWeatherModel } from '../shared/models/fewDaysWeather';
 
-import { WeatherService } from '../weather-service/weather.service';
+import { WeatherService } from '../shared/weather-service/weather.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -14,203 +14,149 @@ import { WeatherService } from '../weather-service/weather.service';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent {
-  constructor(private weatherService:WeatherService, private router:Router,private route:ActivatedRoute){}
 
-  city:string; // ono sto upisemo u search
 
-  cityKey:string; //id grada koji sluzi za prognozu
-
+  city: string; // ono sto upisemo u search
+  cityKey: string; //id grada koji sluzi za prognozu
   tempInCelsius = true;
-
   spinerIn = false;
-
   errorMessage = '';
 
+  constructor(private weatherService: WeatherService, private router: Router, private route: ActivatedRoute) { }
 
+  ngOnInit() { };
 
-
-  ngOnInit(){
-
-
-
-  };
-
-
-
-  onFarenheit(){ //metoda kojom ispisujemo vrednosti u farenheit i miles
-
+  onFarenheit() { //metoda kojom ispisujemo vrednosti u farenheit i miles
     this.tempInCelsius = false;
-
     this.weatherService.onSendTypeOfValue.next(this.tempInCelsius);
-
   }
 
-  onCelsius(){ //metoda kojom postavljamo vrednost na celsius i km/h
+  onCelsius() { //metoda kojom postavljamo vrednost na celsius i km/h
     this.tempInCelsius = true;
-
     this.weatherService.onSendTypeOfValue.next(this.tempInCelsius);
   }
 
+  searchCity() {      // izvrsava se postavljanje spinera  zatim preuzimanje svih informacija iz apija a onda izvrsavanje rute i prikaz svih informacija
 
-
-
-
-  searchCity(){      // izvrsava se postavljanje spinera  zatim preuzimanje svih informacija iz apija a onda izvrsavanje rute i prikaz svih informacija
-
-    if(!this.city ){
+    if (!this.city) {
       this.errorMessage = "Please insert a location !"
-    }else{
+    } else {
       this.spinerIn = true;
       this.errorMessage = '';
 
-
-
       this.weatherService.getCity(this.city).subscribe(
-
         response => {
-          if(response[0] === undefined){
+          if (response[0] === undefined) {
             this.errorMessage = "Please insert a valid location !"
             this.spinerIn = false;
           }
-
-
           console.log(response);
           console.log(response[0].Key);
           this.cityKey = response[0].Key;
           console.log(this.cityKey);
 
+          //preuzimanje informacije o trazenom gradu i uzimanje njegovog ID kljuca
 
+          let cityName = response[0].EnglishName;
+          let countryName = response[0]['Country'].LocalizedName;
 
+          const city: CityModel = {
+            cityName: cityName,
+            countryName: countryName
+          };
+          this.weatherService.onSendCity.next(city);
 
-                //preuzimanje informacije o trazenom gradu i uzimanje njegovog ID kljuca
+          this.weatherService.getFewDaysWeather(this.cityKey).subscribe(weatherResponse => {           //preuzimanje informacija o prognozi za odredjeni grad za 5 dana
+            console.log(weatherResponse);
+            let minTemp = weatherResponse['DailyForecasts'][0]['Temperature']['Minimum'].Value;;
+            let maxTemp = weatherResponse['DailyForecasts'][0]['Temperature']['Maximum'].Value;
+            let currentDate = new Date(weatherResponse['DailyForecasts'][0].Date);
+            let air = weatherResponse['DailyForecasts'][0]['AirAndPollen'][0].Category;
+            let fiveDaysWeather = weatherResponse['DailyForecasts'];
+            let weatherText = weatherResponse['DailyForecasts'][0]['Day'].IconPhrase;
 
-              let cityName = response[0].EnglishName;
-              let countryName = response[0]['Country'].LocalizedName;
+            const fewDaysWeather: FewDaysWeatherModel = {
+              currentTempMin: minTemp,
+              currentTempMax: maxTemp,
+              currentDate: currentDate,
+              air: air,
+              fiveDays: fiveDaysWeather,
+              watherText: weatherText
+            };
 
-              const city = new CityModel (
-                cityName,
-                countryName
-              );
+            this.weatherService.onSendFewDaysWeather.next(fewDaysWeather);
 
-              this.weatherService.onSendCity.next(city);
+            this.weatherService.onSendTypeOfValue.next(this.tempInCelsius);
+          })
 
+          this.weatherService.getCurrentCondition(this.cityKey).subscribe((current => { //preuzimanje prognoze za trenutni dan
+            console.log(current);
 
+            let tempMetric = current[0]['Temperature']['Metric'].Value;
+            let tempImperial = current[0]['Temperature']['Imperial'].Value
+            let humidity = current[0].IndoorRelativeHumidity;
+            let uvIndex = current[0].UVIndexText;
+            let percipitation = current[0]['Precip1hr']['Metric'].Value;
+            let windMetric = current[0]['Wind']['Speed']['Metric'].Value;
+            let windImperial = current[0]['Wind']['Speed']['Imperial'].Value;
+            let preasureMetric = current[0]['Pressure']['Metric'].Value;
+            let preasureImperial = current[0]['Pressure']['Imperial'].Value;
+            let feelsLikeMetric = current[0]['RealFeelTemperature']['Metric'].Value;
+            let feelsLikeImperial = current[0]['RealFeelTemperature']['Imperial'].Value;
+            let visibilityMetric = current[0]['Visibility']['Metric'].Value;
+            let visibilityImperial = current[0]['Visibility']['Imperial'].Value;
+            let weatherText = current[0].WeatherText;
+            let weatherIcon = current[0].WeatherIcon;
 
-            this.weatherService.getFewDaysWeather(this.cityKey).subscribe(weatherResponse => {           //preuzimanje informacija o prognozi za odredjeni grad za 5 dana
-              console.log( weatherResponse);
+            if (tempMetric != undefined || tempMetric != null) {
+              const cuurentCondition: CurrentConditionsModel = {
+                tempMetric: tempMetric,
+                tempImperial: tempImperial,
+                humidity: humidity,
+                uvIndex: uvIndex,
+                percipitation: percipitation,
+                windMetric: windMetric,
+                windImperial: windImperial,
+                preasureMetric: preasureMetric,
+                preasureImperial: preasureImperial,
+                feelsLikeMetric: feelsLikeMetric,
+                feelsLikeImperial: feelsLikeImperial,
+                visibilityMetric: visibilityMetric,
+                visibilityImperial: visibilityImperial,
+                weatherText: weatherText,
+                weatherIcon: weatherIcon
+              };
 
+              this.weatherService.onSendCurrentConditions.next(cuurentCondition); //salje podatke o trenutnom vremenu
+              this.weatherService.setWeatherIconPath(weatherIcon); // proverava koja je numericka vrednost ikonice za vreme i postavlja odredjenu ikonicu iz asets
+              this.weatherService.onSendIconPath(); //salje putanju do ikonice ,a na taj podataka se pretplacijume u komponenti current-temp
+            }
+          }));
 
-              let minTemp = weatherResponse['DailyForecasts'][0]['Temperature']['Minimum'].Value;;
-              let maxTemp = weatherResponse['DailyForecasts'][0]['Temperature']['Maximum'].Value;
-              let currentDate = new Date (weatherResponse['DailyForecasts'][0].Date);
-              let air = weatherResponse['DailyForecasts'][0]['AirAndPollen'][0].Category;
-              let fiveDaysWeather = weatherResponse['DailyForecasts'];
-              let weatherText = weatherResponse['DailyForecasts'][0]['Day'].IconPhrase;
+          this.weatherService.getHourlyWeather(this.cityKey).subscribe((hourlyResponse) => {
+            console.log(hourlyResponse)
+            let hours12 = hourlyResponse;
 
+            this.weatherService.onSendHourlyConditions.next(hours12);
+          })
 
-
-
-              const fewDaysWeather = new FewDaysWeatherModel(
-                minTemp,
-                maxTemp,
-                currentDate,
-                air,
-                fiveDaysWeather,
-                weatherText
-              );
-
-              this.weatherService.onSendFewDaysWeather.next(fewDaysWeather);
-
-              this.weatherService.onSendTypeOfValue.next(this.tempInCelsius);
-
-
-
-
-              })
-
-              this.weatherService.getCurrentCondition(this.cityKey).subscribe((current => { //preuzimanje prognoze za trenutni dan
-                console.log(current);
-
-                let tempMetric = current[0]['Temperature']['Metric'].Value;
-                let tempImperial = current[0]['Temperature']['Imperial'].Value
-                let humidity = current[0].IndoorRelativeHumidity;
-                let uvIndex = current[0].UVIndexText;
-                let percipitation = current[0]['Precip1hr']['Metric'].Value;
-                let windMetric = current[0]['Wind']['Speed']['Metric'].Value;
-                let windImperial = current[0]['Wind']['Speed']['Imperial'].Value;
-                let preasureMetric = current[0]['Pressure']['Metric'].Value;
-                let preasureImperial = current[0]['Pressure']['Imperial'].Value;
-                let feelsLikeMetric = current[0]['RealFeelTemperature']['Metric'].Value;
-                let feelsLikeImperial = current[0]['RealFeelTemperature']['Imperial'].Value;
-                let visibilityMetric = current[0]['Visibility']['Metric'].Value;
-                let visibilityImperial = current[0]['Visibility']['Imperial'].Value;
-                let weatherText = current[0].WeatherText;
-                let weatherIcon = current[0].WeatherIcon;
-
-
-                if(tempMetric !=undefined || tempMetric !=null){
-                  const cuurentCondition = new CurrentConditionsModel(
-                    tempMetric,
-                    tempImperial,
-                    humidity,
-                    uvIndex,
-                    percipitation,
-                    windMetric,
-                    windImperial,
-                    preasureMetric,
-                    preasureImperial,
-                    feelsLikeMetric,
-                    feelsLikeImperial,
-                    visibilityMetric,
-                    visibilityImperial,
-                    weatherText,
-                    weatherIcon
-                  );
-
-
-                this.weatherService.onSendCurrentConditions.next(cuurentCondition); //salje podatke o trenutnom vremenu
-
-                this.weatherService.setWeatherIconPath(weatherIcon); // proverava koja je numericka vrednost ikonice za vreme i postavlja odredjenu ikonicu iz asets
-                this.weatherService.onSendIconPath(); //salje putanju do ikonice ,a na taj podataka se pretplacijume u komponenti current-temp
-
-
-
-                }
-
-              }));
-
-              this.weatherService.getHourlyWeather(this.cityKey).subscribe((hourlyResponse) => {
-                console.log(hourlyResponse)
-                let hours12 = hourlyResponse;
-
-
-                this.weatherService.onSendHourlyConditions.next(hours12);
-
-
-
-              })
-
-              this.spinerIn = false;
-          },
-       errorResponse=>{
-        console.log(errorResponse);
-        this.spinerIn = false;
-        switch(errorResponse.name){
-          case 'HttpErrorResponse': this.errorMessage = 'HTTP failure response !';
-          break;
+          this.spinerIn = false;
+        },
+        errorResponse => {
+          console.log(errorResponse);
+          this.spinerIn = false;
+          switch (errorResponse.name) {
+            case 'HttpErrorResponse': this.errorMessage = 'HTTP failure response !';
+              break;
+          }
         }
-      }
       );
-}
+    }
 
-    if(this.city)
-    this.router.navigate(['/search/weather-conditions']);
+    if (this.city)
+      this.router.navigate(['/search/weather-conditions']);
     this.spinerIn = false;
-
-
-
-
-}
+  }
 }
 
 

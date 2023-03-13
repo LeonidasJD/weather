@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6 d-flex flex-column">
       <h3 class="dateIn">Today</h3>
-      <h6  class="dateIn">{{currentDate | date: 'EEE d.MMM'}} </h6>
+      <h6 class="dateIn">{{currentDate | date: 'EEE d.MMM'}} </h6>
     </div>
     <div class="col-md-6 d-flex text-center">
       <img [src]="iconPath" alt="">
@@ -10,8 +10,10 @@
   </div>
   <div class="row" style="padding-top: 17px;">
     <div class="col-md-12 text-center">
-      <h1 class="temperature" style="font-size: 100px;" *ngIf="typeOfValue ===true">{{ currentTempMetric | number: '1.0-0'}}<span>&#8451;</span></h1>
-      <h1 class="temperature" style="font-size: 100px;" *ngIf="typeOfValue ===false">{{ currentTempImperial | number: '1.0-0'}}<span>&#8457;</span></h1>
+      <h1 class="temperature" style="font-size: 100px;" *ngIf="typeOfValue ===true">{{ currentTempMetric | number:
+        '1.0-0'}}<span>&#8451;</span></h1>
+      <h1 class="temperature" style="font-size: 100px;" *ngIf="typeOfValue ===false">{{ currentTempImperial | number:
+        '1.0-0'}}<span>&#8457;</span></h1>
     </div>
   </div>
   <div class="row">
@@ -21,7 +23,8 @@
   </div>
   <div class="row">
     <div class="col-md-12 text-center" style="padding-top: 17px;">
-      <h4 style="font-size: 28px;" class="location"><span><img src="assets/location.png" alt="" style="margin-bottom: 0.80rem;"></span>{{city+', '+country}}</h4>
+      <h4 style="font-size: 28px;" class="location"><span><img src="assets/location.png" alt=""
+            style="margin-bottom: 0.80rem;"></span>{{city+', '+country}}</h4>
     </div>
   </div>
 </div>

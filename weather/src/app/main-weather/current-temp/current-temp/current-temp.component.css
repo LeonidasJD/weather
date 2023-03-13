@@ -1,19 +1,21 @@
-.dateIn{
+.dateIn {
   text-align: right;
   color: white;
   font-family: 'Questrial';
 }
 
-.temperature{
+.temperature {
   color: white;
   font-family: 'Questrial';
 
 }
-.location{
+
+.location {
   color: white;
   font-family: 'Questrial';
 }
-.description{
+
+.description {
   color: white;
   font-family: 'Questrial';
 }

@@ -7,9 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private router:Router){}
+  constructor(private router: Router) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.router.navigate(['/search']);
 
   }

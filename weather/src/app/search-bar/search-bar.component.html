@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-md-10">
     <div class="search__container">
-       <input [(ngModel)]="city" class="search__input" type="text" placeholder="Add location e.g. Belgrade" />
-  </div>
+      <input [(ngModel)]="city" class="search__input" type="text" placeholder="Add location e.g. Belgrade" />
+    </div>
   </div>
   <div class="col-md-2">
     <div class="typeOfTemperature">
@@ -14,7 +14,7 @@
 </div>
 <div class="row">
   <div class="col-md-12 d-flex flex-start">
-    <div class="errorMessageDiv" [ngClass]="{errorShow:errorMessage}" >
+    <div class="errorMessageDiv" [ngClass]="{errorShow:errorMessage}">
       <span class="errorMessage">{{errorMessage}}</span>
     </div>
   </div>
@@ -22,7 +22,7 @@
 <div class="row">
   <div class="col-md-12 d-flex justify-content-center">
     <div id="search-btn-div">
-      <button (click)="searchCity()" id="searchBtn" >Search</button>
+      <button (click)="searchCity()" id="searchBtn">Search</button>
     </div>
   </div>
 </div>
@@ -32,10 +32,8 @@
     </div>
   </div>
 </div>
-<div class="row " >
+<div class="row ">
   <div class="col-md-12">
     <router-outlet></router-outlet><!--weather conditions komponenta i sve komponente koje se nalaze u njoj-->
   </div>
 </div>
-
-

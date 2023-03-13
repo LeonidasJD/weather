@@ -3,164 +3,168 @@
 /* Base styling */
 
 body {
-    width: 430px;
-    margin: 0 auto;
-    background-color: #F7CAC9;
-    font-family: 'Raleway', sans-serif;
+  width: 430px;
+  margin: 0 auto;
+  background-color: #F7CAC9;
+  font-family: 'Raleway', sans-serif;
 }
 
 .search__container {
-        padding-top: 64px;
-    }
+  padding-top: 64px;
+}
 
 .search__title {
-        font-size: 22px;
-        font-weight: 900;
-        text-align: center;
-        color:white
-    }
+  font-size: 22px;
+  font-weight: 900;
+  text-align: center;
+  color: white
+}
 
 .search__input {
-        width: 100%;
-        padding: 12px 24px;
-        margin-bottom: 10px;
+  width: 100%;
+  padding: 12px 24px;
+  margin-bottom: 10px;
 
-        background-color: transparent;
-        transition: transform 250ms ease-in-out;
-        font-size: 14px;
-        line-height: 18px;
-        font-family: 'Questrial';
+  background-color: transparent;
+  transition: transform 250ms ease-in-out;
+  font-size: 14px;
+  line-height: 18px;
+  font-family: 'Questrial';
 
-        color: white;
-        background-color: transparent;
+  color: white;
+  background-color: transparent;
 
 
 
-        background-repeat: no-repeat;
-        background-size: 18px 18px;
-        background-position: 95% center;
-        border-radius: 50px;
-        border: 1px solid white;
-        transition: all 250ms ease-in-out;
-        backface-visibility: hidden;
-        transform-style: preserve-3d;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  background-position: 95% center;
+  border-radius: 50px;
+  border: 1px solid white;
+  transition: all 250ms ease-in-out;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 
-    }
+}
 
 .search__input::placeholder {
-            color: rgba(255, 255, 255, 0.8);
-            letter-spacing: 1.5px;
-        }
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 1.5px;
+}
 
 .search__input:hover,
-        .search__input:focus {
-            padding: 12px 0;
-            outline: 0;
-            border: 1px solid transparent;
-            border-bottom: 1px solid white;
-            border-radius: 0;
-            background-position: 100% center;
-        }
+.search__input:focus {
+  padding: 12px 0;
+  outline: 0;
+  border: 1px solid transparent;
+  border-bottom: 1px solid white;
+  border-radius: 0;
+  background-position: 100% center;
+}
 
-        .typeOfTemperature{
-          margin-top: 64px;
-          background-color: white;
-          border-radius: 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding-top:8px;
-          padding-bottom: 8px;
-          max-width: 150px;
-        }
-        .tempC{
-          margin-right: 10px;
-          text-decoration: none;
-          color: rgb(17, 182, 236);
-          padding: 0px;
-          border: 0px;
-          background-color: transparent;
-          font-weight: bold;
-          font-size: large;
-          font-family: 'Questrial';
-          transition: transform 0.3s ease-in-out;
-        }
-        .tempC:hover{
-          transform: rotate(360deg);
-        }
+.typeOfTemperature {
+  margin-top: 64px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  max-width: 150px;
+}
 
-        .tempF{
-          margin-left: 10px;
-          text-decoration: none;
-          color: rgb(17, 182, 236);
-          padding: 0px;
-          border: 0px;
-          background-color: transparent;
-          font-weight: bold;
-          font-size: large;
-          font-family: 'Questrial';
-          transition: transform 0.3s ease-in-out;
-        }
-        .tempF:hover{
-          transform: rotate(360deg);
-        }
-        .lineT{
-          font-weight: bold;
-          color: gray;
-        }
+.tempC {
+  margin-right: 10px;
+  text-decoration: none;
+  color: rgb(17, 182, 236);
+  padding: 0px;
+  border: 0px;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: large;
+  font-family: 'Questrial';
+  transition: transform 0.3s ease-in-out;
+}
 
-        #search-btn-div{
-          text-align: center;
-          margin-top: 15px;
-          border: 1px solid white;
-          border-radius: 50px;
-          width: 100px;
-          margin: auto;
-          transition: all 0.3s ease-in-out;
+.tempC:hover {
+  transform: rotate(360deg);
+}
 
+.tempF {
+  margin-left: 10px;
+  text-decoration: none;
+  color: rgb(17, 182, 236);
+  padding: 0px;
+  border: 0px;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: large;
+  font-family: 'Questrial';
+  transition: transform 0.3s ease-in-out;
+}
 
-        }
-        #search-btn-div:hover{
-          width: 220px;
+.tempF:hover {
+  transform: rotate(360deg);
+}
 
-        }
+.lineT {
+  font-weight: bold;
+  color: gray;
+}
 
-        #searchBtn{
-          background-color: transparent;
-          border-color: transparent;
-          font-family: 'Questrial';
-          color: white;
-          transition: all 0.3s ease;
-        }
-        #searchBtn:hover{
-          color: wheat;
-        }
-
-        .errorMessageDiv{
-          opacity: 0;
-          background-color: rgb(247, 87, 87);
-          padding-top: 5px;
-          padding-bottom: 5px;
-          padding-left: 25px;
-          padding-right: 25px;
-          border-radius: 20px;
-          transition: all 0.3s ease-in-out;
-          transform: translateX(20px);
-        }
-        .errorShow{
-          opacity: 1;
-          transform: translateX(0);
+#search-btn-div {
+  text-align: center;
+  margin-top: 15px;
+  border: 1px solid white;
+  border-radius: 50px;
+  width: 100px;
+  margin: auto;
+  transition: all 0.3s ease-in-out;
 
 
+}
 
+#search-btn-div:hover {
+  width: 220px;
 
-        }
+}
 
-        .errorMessage{
-          font-family: 'Questrial';
-          font-size: small;
-          color: white;
-        }
+#searchBtn {
+  background-color: transparent;
+  border-color: transparent;
+  font-family: 'Questrial';
+  color: white;
+  transition: all 0.3s ease;
+}
+
+#searchBtn:hover {
+  color: wheat;
+}
+
+.errorMessageDiv {
+  opacity: 0;
+  background-color: rgb(247, 87, 87);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(20px);
+}
+
+.errorShow {
+  opacity: 1;
+  transform: translateX(0);
 
 
 
+
+}
+
+.errorMessage {
+  font-family: 'Questrial';
+  font-size: small;
+  color: white;
+}

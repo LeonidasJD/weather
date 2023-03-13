@@ -1,11 +1,11 @@
-.line{
+.line {
   max-width: auto;
   background-color: white;
   height: 1px;
   margin-top: 70px;
 }
 
-.details{
+.details {
   padding-top: 40px;
   color: white;
   margin-bottom: 30px;
@@ -13,24 +13,24 @@
 }
 
 
-.detailsDiv{
+.detailsDiv {
   background-color: white;
   border-radius: 5px;
 }
 
-.detailIcons{
+.detailIcons {
   width: 54px;
   height: 54px;
 }
-#detail-h4{
+
+#detail-h4 {
   color: #054677;
   margin-left: 30px;
   font-family: 'Questrial';
 }
-#detail-h6{
+
+#detail-h6 {
   color: gray;
   margin-left: 30px;
   font-family: 'Questrial';
 }
-
-

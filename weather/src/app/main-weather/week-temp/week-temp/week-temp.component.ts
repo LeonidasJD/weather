@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { WeatherService } from 'src/app/weather-service/weather.service';
+import { WeatherService } from 'src/app/shared/weather-service/weather.service';
 
 @Component({
   selector: 'app-week-temp',
@@ -8,57 +8,30 @@ import { WeatherService } from 'src/app/weather-service/weather.service';
 })
 export class WeekTempComponent {
 
-  constructor(private weatherService:WeatherService){}
 
-@Input() id:number;
+  @Input() id: number;
+  daysOfWeek: Date[] = [];
+  fiveDaysWeather: Object;
+  typeOfValue: boolean;
+  iconPath: string;
 
-  daysOfWeek:Date[] = [];
-  fiveDaysWeather:Object;
+  constructor(private weatherService: WeatherService) { }
 
-  typeOfValue:boolean;
+  ngOnInit() {
 
+    for (let i = 0; i < 5; i++) {
+      const day = new Date();
+      day.setDate(day.getDate() + i);
+      this.daysOfWeek.push(day);
+    }
 
+    this.weatherService.onSendFewDaysWeather.subscribe((response => {
+      this.fiveDaysWeather = response.fiveDays;
 
+    }));
 
-  iconPath:string;
+    this.weatherService.onSendTypeOfValue.subscribe((valueResponse => { this.typeOfValue = valueResponse }));
 
-
-  ngOnInit(){
-
-   for(let i = 0; i < 5; i++) {
-     const day = new Date();
-     day.setDate(day.getDate() + i);
-     this.daysOfWeek.push(day);
-     }
-
-  this.weatherService.onSendFewDaysWeather.subscribe((response => {
-  this.fiveDaysWeather = response.fiveDays;
-
-
-}));
-
-  this.weatherService.onSendTypeOfValue.subscribe((valueResponse => {this.typeOfValue = valueResponse}));
-
-this.weatherService.onSendWeatherIconPath.subscribe((iconResponse => {this.iconPath = iconResponse}))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   }
-
-
-
-
-
-
+    this.weatherService.onSendWeatherIconPath.subscribe((iconResponse => { this.iconPath = iconResponse }))
+  }
 }

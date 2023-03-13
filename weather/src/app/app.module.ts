@@ -6,7 +6,7 @@ import { MainWeatherComponent } from './main-weather/main-weather.component';
 import { WeatherDetailsComponent } from './weather-details/weather-details.component';
 import { CurrentTempComponent } from './main-weather/current-temp/current-temp/current-temp.component';
 import { WeekTempComponent } from './main-weather/week-temp/week-temp/week-temp.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Route, RouterModule, Routes } from '@angular/router';
 import { WeatherConditionsComponent } from './weather-conditions/weather-conditions.component';
@@ -14,11 +14,13 @@ import { HourlyWeatherComponent } from './main-weather/hourly-weather/hourly-wea
 import { CommonModule } from '@angular/common';
 
 
-const route:Routes = [
-{path: 'search', component: SearchBarComponent, children:[
+const route: Routes = [
+  {
+    path: 'search', component: SearchBarComponent, children: [
 
- {path: 'weather-conditions', component: WeatherConditionsComponent}
-]},
+      { path: 'weather-conditions', component: WeatherConditionsComponent }
+    ]
+  },
 
 
 

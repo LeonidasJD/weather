@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { CityModel } from '../shared/city-model';
-import { CurrentConditionsModel } from '../shared/current-Conditions-model';
-import { FewDaysWeatherModel } from '../shared/fewDaysWeather';
+import { CityModel } from '../models/city-model';
+import { CurrentConditionsModel } from '../models/current-Conditions-model';
+import { FewDaysWeatherModel } from '../models/fewDaysWeather';
 
 @Injectable({
   providedIn: 'root'

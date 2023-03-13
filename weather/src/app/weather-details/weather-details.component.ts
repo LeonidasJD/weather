@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { WeatherService } from '../weather-service/weather.service';
+import { WeatherService } from '../shared/weather-service/weather.service';
 
 @Component({
   selector: 'app-weather-details',
@@ -8,48 +8,43 @@ import { WeatherService } from '../weather-service/weather.service';
 })
 export class WeatherDetailsComponent {
 
-  constructor(private weatherService:WeatherService){}
+  uvIndex: string;
+  air: string;
+  precipitation: number;
+  humidity: number;
+  windMetric: number;
+  windImperial: number;
+  pressureMetric: number;
+  pressureImperial: number;
+  feelsLikeMetric: number;
+  feelsLikeImperial: number;
+  visibilityMetric: number;
+  visibilityImperial: number;
+  typeOfValue: boolean;
 
-  uvIndex:string;
-  air:string;
-  precipitation:number;
-  humidity:number;
-  windMetric:number;
-  windImperial:number;
-  pressureMetric:number;
-  pressureImperial:number;
-  feelsLikeMetric:number;
-  feelsLikeImperial:number;
-  visibilityMetric:number;
-  visibilityImperial:number;
+  constructor(private weatherService: WeatherService) { }
 
+  ngOnInit() {
 
-  typeOfValue:boolean;
+    this.weatherService.onSendCurrentConditions.subscribe((responseCurrentCond => {
 
-ngOnInit(){
+      this.uvIndex = responseCurrentCond.uvIndex;
+      this.precipitation = responseCurrentCond.percipitation;
+      this.humidity = responseCurrentCond.humidity;
+      this.windMetric = responseCurrentCond.windMetric;
+      this.windImperial = responseCurrentCond.windImperial;
+      this.pressureMetric = responseCurrentCond.preasureMetric;
+      this.pressureImperial = responseCurrentCond.preasureImperial;
+      this.feelsLikeMetric = responseCurrentCond.feelsLikeMetric;
+      this.feelsLikeImperial = responseCurrentCond.feelsLikeImperial;
+      this.visibilityMetric = responseCurrentCond.visibilityMetric;
+      this.visibilityImperial = responseCurrentCond.visibilityImperial;
+    }))
 
-  this.weatherService.onSendCurrentConditions.subscribe((responseCurrentCond =>{
+    this.weatherService.onSendFewDaysWeather.subscribe((responseWeather => {
+      this.air = responseWeather.air;
+    }))
 
-    this.uvIndex = responseCurrentCond.uvIndex;
-    this.precipitation = responseCurrentCond.percipitation;
-    this.humidity = responseCurrentCond.humidity;
-    this.windMetric = responseCurrentCond.windMetric;
-    this.windImperial = responseCurrentCond.windImperial;
-    this.pressureMetric = responseCurrentCond.preasureMetric;
-    this.pressureImperial = responseCurrentCond.preasureImperial;
-    this.feelsLikeMetric = responseCurrentCond.feelsLikeMetric;
-    this.feelsLikeImperial = responseCurrentCond.feelsLikeImperial;
-    this.visibilityMetric = responseCurrentCond.visibilityMetric;
-    this.visibilityImperial = responseCurrentCond.visibilityImperial;
-
-
-  }))
-
-  this.weatherService.onSendFewDaysWeather.subscribe((responseWeather =>{
-    this.air = responseWeather.air;
-  }))
-
-  this.weatherService.onSendTypeOfValue.subscribe((responseValue => {this.typeOfValue = responseValue}));
-}
-
+    this.weatherService.onSendTypeOfValue.subscribe((responseValue => { this.typeOfValue = responseValue }));
+  }
 }
