@@ -16,10 +16,7 @@ import { CommonModule } from '@angular/common';
 
 const route: Routes = [
   {
-    path: 'search', component: SearchBarComponent, children: [
-
-      { path: 'weather-conditions', component: WeatherConditionsComponent }
-    ]
+    path: 'search', component: SearchBarComponent
   },
 
 

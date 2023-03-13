@@ -34,6 +34,6 @@
 </div>
 <div class="row ">
   <div class="col-md-12">
-    <router-outlet></router-outlet><!--weather conditions komponenta i sve komponente koje se nalaze u njoj-->
+    <app-weather-conditions *ngIf="(cityCreated == true)"></app-weather-conditions><!--weather conditions komponenta i sve komponente koje se nalaze u njoj-->
   </div>
 </div>
