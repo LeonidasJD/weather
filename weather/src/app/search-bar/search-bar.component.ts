@@ -21,6 +21,7 @@ export class SearchBarComponent {
   tempInCelsius = true;
   spinerIn = false;
   errorMessage = '';
+  cityCreated: boolean = false;
 
   constructor(private weatherService: WeatherService, private router: Router, private route: ActivatedRoute) { }
 
@@ -40,15 +41,18 @@ export class SearchBarComponent {
 
     if (!this.city) {
       this.errorMessage = "Please insert a location !"
+      this.cityCreated = false;
     } else {
       this.spinerIn = true;
       this.errorMessage = '';
+      this.cityCreated = true;
 
       this.weatherService.getCity(this.city).subscribe(
         response => {
           if (response[0] === undefined) {
             this.errorMessage = "Please insert a valid location !"
             this.spinerIn = false;
+            this.cityCreated = false;
           }
           console.log(response);
           console.log(response[0].Key);
@@ -60,11 +64,11 @@ export class SearchBarComponent {
           let cityName = response[0].EnglishName;
           let countryName = response[0]['Country'].LocalizedName;
 
-          const city: CityModel = {
+          const cityModel: CityModel = {
             cityName: cityName,
             countryName: countryName
           };
-          this.weatherService.onSendCity.next(city);
+          this.weatherService.onSendCity.next(cityModel);
 
           this.weatherService.getFewDaysWeather(this.cityKey).subscribe(weatherResponse => {           //preuzimanje informacija o prognozi za odredjeni grad za 5 dana
             console.log(weatherResponse);
@@ -141,6 +145,8 @@ export class SearchBarComponent {
           })
 
           this.spinerIn = false;
+
+
         },
         errorResponse => {
           console.log(errorResponse);
@@ -152,10 +158,6 @@ export class SearchBarComponent {
         }
       );
     }
-
-    if (this.city)
-      this.router.navigate(['/search/weather-conditions']);
-    this.spinerIn = false;
   }
 }
 
