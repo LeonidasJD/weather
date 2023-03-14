@@ -71,7 +71,18 @@ body {
   justify-content: center;
   padding-top: 8px;
   padding-bottom: 8px;
-  max-width: 150px;
+  width: 150px;
+}
+
+@media only screen and (max-width: 767px) {
+  .frame {
+    display: flex;
+    justify-content: center;
+  }
+
+  .typeOfTemperature {
+    margin-top: 20px;
+  }
 }
 
 .tempC {

@@ -5,10 +5,12 @@
     </div>
   </div>
   <div class="col-md-2">
-    <div class="typeOfTemperature">
-      <button class="tempC" (click)="onCelsius()">C</button>
-      <span class="lineT">/</span>
-      <button class="tempF" (click)="onFarenheit()">F</button>
+    <div class="frame">
+      <div class="typeOfTemperature">
+        <button class="tempC" (click)="onCelsius()">C</button>
+        <span class="lineT">/</span>
+        <button class="tempF" (click)="onFarenheit()">F</button>
+      </div>
     </div>
   </div>
 </div>
@@ -34,6 +36,7 @@
 </div>
 <div class="row ">
   <div class="col-md-12">
-    <app-weather-conditions *ngIf="(cityCreated == true)"></app-weather-conditions><!--weather conditions komponenta i sve komponente koje se nalaze u njoj-->
+    <app-weather-conditions
+      *ngIf="(cityCreated == true)"></app-weather-conditions><!--weather conditions komponenta i sve komponente koje se nalaze u njoj-->
   </div>
 </div>

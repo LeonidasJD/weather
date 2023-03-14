@@ -14,6 +14,7 @@ import { HourlyWeatherComponent } from './main-weather/hourly-weather/hourly-wea
 import { CommonModule } from '@angular/common';
 
 
+
 const route: Routes = [
   {
     path: 'search', component: SearchBarComponent
@@ -34,6 +35,7 @@ const route: Routes = [
     WeekTempComponent,
     WeatherConditionsComponent,
     HourlyWeatherComponent,
+
 
 
   ],

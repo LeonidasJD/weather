@@ -4,6 +4,16 @@
   font-family: 'Questrial';
 }
 
+@media only screen and (max-width: 767px) {
+  .dateIn {
+    text-align: center;
+  }
+  .div-img{
+    display: flex;
+    justify-content: center;
+  }
+}
+
 .temperature {
   color: white;
   font-family: 'Questrial';
