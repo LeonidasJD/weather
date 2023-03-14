@@ -18,6 +18,12 @@
   border-radius: 5px;
 }
 
+@media screen and (max-width:767px) {
+  .detailsDiv {
+    margin-bottom: 10px;
+  }
+}
+
 .detailIcons {
   width: 54px;
   height: 54px;
