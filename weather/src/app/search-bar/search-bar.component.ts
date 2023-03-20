@@ -28,7 +28,7 @@ export class SearchBarComponent implements OnDestroy {
   subscriptions: Subscription;
 
   constructor(private weatherService: WeatherService, private router: Router, private route: ActivatedRoute) { }
-  
+
 
   ngOnInit() { };
 
@@ -166,10 +166,9 @@ export class SearchBarComponent implements OnDestroy {
 
   popUpButton() {
     this.inputClicked = !this.inputClicked;
-    console.log('input clicked');
   }
 
-  someMethod() {
+  onGetLiveLocation() {
     this.weatherService.getIpAddress().subscribe((ipResponse => {
       this.ipAddress = ipResponse['ip'];
     }));
@@ -181,9 +180,9 @@ export class SearchBarComponent implements OnDestroy {
     }))
   }
 
-ngOnDestroy(): void {
-  this.subscriptions.unsubscribe();
-}
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
 }
 
 
