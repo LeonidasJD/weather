@@ -5,10 +5,8 @@
     width: 50px;
     padding-top: 10px;
 }
-
-@media only screen and (max-width: 767px) {
-    #week-row {
-        display: flex;
-        justify-content: center;
-    }
+#week-row {
+    display: flex;
+    justify-content: center;
+    
 }
