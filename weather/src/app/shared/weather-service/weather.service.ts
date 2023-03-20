@@ -12,6 +12,11 @@ export class WeatherService {
 
   constructor(private http: HttpClient) { }
 
+  weatherIconPath: string;
+  baseUrl: string = 'http://dataservice.accuweather.com';
+  apiKey = 'ltcGN2J6BxLTeAJETfnDxcF8x6Pr5ThM';
+  locationApiKey = 'bb8db6b1c2c24e6d8c6f774a558ac650';
+
   onSendCity = new Subject<CityModel>();
   onSendFewDaysWeather = new Subject<FewDaysWeatherModel>();
   onSendCurrentConditions = new Subject<CurrentConditionsModel>();
@@ -19,24 +24,32 @@ export class WeatherService {
   onSendWeatherIconPath = new Subject<string>(); //slanje putanje ikone koja je proverena metodom setWeatherIconPat
   onSendHourlyConditions = new Subject<Object>();
   onSendErrorMessage = new Subject<string>();
-  weatherIconPath: string;
 
-  apiKey = 'ltcGN2J6BxLTeAJETfnDxcF8x6Pr5ThM';
+
+
 
   getCity(city: string) {
-    return this.http.get<Object>('http://dataservice.accuweather.com/locations/v1/cities/search?apikey=' + this.apiKey + '&q=' + city);
+    return this.http.get<Object>(`${this.baseUrl}/locations/v1/cities/search?apikey=${this.apiKey}&q=${city}`);
   }
 
   getFewDaysWeather(cityKey: string) {
-    return this.http.get('http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + cityKey + '?apikey=' + this.apiKey + '&details=true&metric=true');
+    return this.http.get(`${this.baseUrl}/forecasts/v1/daily/5day/${cityKey}?apikey=${this.apiKey}&details=true&metric=true`);
   }
 
   getCurrentCondition(cityKey: string) {
-    return this.http.get('http://dataservice.accuweather.com/currentconditions/v1/' + cityKey + '?apikey=' + this.apiKey + '&details=true');
+    return this.http.get(`${this.baseUrl}/currentconditions/v1/${cityKey}?apikey=${this.apiKey}&details=true`);
   }
 
   getHourlyWeather(cityKey: string) {
-    return this.http.get('http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/' + cityKey + '?apikey=' + this.apiKey + '&details=true&metric=true');
+    return this.http.get(`${this.baseUrl}/forecasts/v1/hourly/12hour/${cityKey}?apikey=${this.apiKey}&details=true&metric=true`);
+  }
+
+  getIpAddress(){
+    return this.http.get(`http://api.ipify.org/?format=json`);
+  }
+
+  getLocation(ipAddress){
+    return this.http.get(`https://ipgeolocation.abstractapi.com/v1/?api_key=${this.locationApiKey}&ip_address${ipAddress}`);
   }
 
   setWeatherIconPath(weatherIconValue: number) { //proveramo na osnovu brojcane vrednosti ikone koja ikonica treba biti prikazana za trenutnu temp
@@ -122,13 +135,9 @@ export class WeatherService {
         break;
       case 44: this.weatherIconPath = 'assets/night-snow.png';
         break;
-
     }
-
   }
-
   onSendIconPath() {
-
     this.onSendWeatherIconPath.next(this.weatherIconPath); //saljemo proverenu putanju do odredjene slike za trenutnu temp
   }
 

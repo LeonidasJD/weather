@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { CityModel } from '../shared/models/city-model';
 import { CurrentConditionsModel } from '../shared/models/current-Conditions-model';
 import { FewDaysWeatherModel } from '../shared/models/fewDaysWeather';
@@ -13,7 +12,7 @@ import { WeatherService } from '../shared/weather-service/weather.service';
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.css']
 })
-export class SearchBarComponent {
+export class SearchBarComponent implements OnDestroy {
 
 
   city: string; // ono sto upisemo u search
@@ -22,8 +21,14 @@ export class SearchBarComponent {
   spinerIn = false;
   errorMessage = '';
   cityCreated: boolean = false;
+  inputClicked: boolean = false;
+  ipAddress: string;
+  getLocationCity: string;
+  getLocationCountry: string;
+  subscriptions: Subscription;
 
   constructor(private weatherService: WeatherService, private router: Router, private route: ActivatedRoute) { }
+  
 
   ngOnInit() { };
 
@@ -47,7 +52,7 @@ export class SearchBarComponent {
       this.errorMessage = '';
       this.cityCreated = true;
 
-      this.weatherService.getCity(this.city).subscribe(
+      this.subscriptions = this.weatherService.getCity(this.city).subscribe(
         response => {
           if (response[0] === undefined) {
             this.errorMessage = "Please insert a valid location !"
@@ -70,7 +75,7 @@ export class SearchBarComponent {
           };
           this.weatherService.onSendCity.next(cityModel);
 
-          this.weatherService.getFewDaysWeather(this.cityKey).subscribe(weatherResponse => {           //preuzimanje informacija o prognozi za odredjeni grad za 5 dana
+          this.subscriptions = this.weatherService.getFewDaysWeather(this.cityKey).subscribe(weatherResponse => {           //preuzimanje informacija o prognozi za odredjeni grad za 5 dana
             console.log(weatherResponse);
             let minTemp = weatherResponse['DailyForecasts'][0]['Temperature']['Minimum'].Value;;
             let maxTemp = weatherResponse['DailyForecasts'][0]['Temperature']['Maximum'].Value;
@@ -93,7 +98,7 @@ export class SearchBarComponent {
             this.weatherService.onSendTypeOfValue.next(this.tempInCelsius);
           })
 
-          this.weatherService.getCurrentCondition(this.cityKey).subscribe((current => { //preuzimanje prognoze za trenutni dan
+          this.subscriptions = this.weatherService.getCurrentCondition(this.cityKey).subscribe((current => { //preuzimanje prognoze za trenutni dan
             console.log(current);
 
             let tempMetric = current[0]['Temperature']['Metric'].Value;
@@ -137,7 +142,7 @@ export class SearchBarComponent {
             }
           }));
 
-          this.weatherService.getHourlyWeather(this.cityKey).subscribe((hourlyResponse) => {
+          this.subscriptions = this.weatherService.getHourlyWeather(this.cityKey).subscribe((hourlyResponse) => {
             console.log(hourlyResponse)
             let hours12 = hourlyResponse;
 
@@ -145,8 +150,6 @@ export class SearchBarComponent {
           })
 
           this.spinerIn = false;
-
-
         },
         errorResponse => {
           console.log(errorResponse);
@@ -158,7 +161,29 @@ export class SearchBarComponent {
         }
       );
     }
+    this.inputClicked = false;
   }
+
+  popUpButton() {
+    this.inputClicked = !this.inputClicked;
+    console.log('input clicked');
+  }
+
+  someMethod() {
+    this.weatherService.getIpAddress().subscribe((ipResponse => {
+      this.ipAddress = ipResponse['ip'];
+    }));
+    this.weatherService.getLocation(this.ipAddress).subscribe((responseLocation => {
+      this.getLocationCity = responseLocation['city'];
+      this.getLocationCountry = responseLocation['country'];
+      this.city = `${this.getLocationCity},${this.getLocationCountry}`;
+      this.inputClicked = false;
+    }))
+  }
+
+ngOnDestroy(): void {
+  this.subscriptions.unsubscribe();
+}
 }
 
 

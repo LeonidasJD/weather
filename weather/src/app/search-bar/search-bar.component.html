@@ -1,7 +1,11 @@
 <div class="row">
   <div class="col-md-10">
     <div class="search__container">
-      <input [(ngModel)]="city" class="search__input" type="text" placeholder="Add location e.g. Belgrade" />
+      <input [(ngModel)]="city" (click)="popUpButton()" class="search__input" type="text" #inputField
+        placeholder="Add location e.g. Belgrade,Serbia" />
+        <div *ngIf="inputClicked" class="currentLocationButton" (click)="someMethod()" >
+          <span class="locationSpan">Use Current Location</span>
+        </div>
     </div>
   </div>
   <div class="col-md-2">
