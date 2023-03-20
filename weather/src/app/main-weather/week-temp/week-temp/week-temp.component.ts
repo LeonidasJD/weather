@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { WeatherService } from 'src/app/shared/weather-service/weather.service';
 
 @Component({
@@ -6,7 +7,7 @@ import { WeatherService } from 'src/app/shared/weather-service/weather.service';
   templateUrl: './week-temp.component.html',
   styleUrls: ['./week-temp.component.css']
 })
-export class WeekTempComponent {
+export class WeekTempComponent implements OnDestroy {
 
 
   @Input() id: number;
@@ -14,6 +15,7 @@ export class WeekTempComponent {
   fiveDaysWeather: Object;
   typeOfValue: boolean;
   iconPath: string;
+  subscriptions: Subscription;
 
   constructor(private weatherService: WeatherService) { }
 
@@ -25,13 +27,17 @@ export class WeekTempComponent {
       this.daysOfWeek.push(day);
     }
 
-    this.weatherService.onSendFewDaysWeather.subscribe((response => {
+    this.subscriptions = this.weatherService.onSendFewDaysWeather.subscribe((response => {
       this.fiveDaysWeather = response.fiveDays;
 
     }));
 
-    this.weatherService.onSendTypeOfValue.subscribe((valueResponse => { this.typeOfValue = valueResponse }));
+    this.subscriptions = this.weatherService.onSendTypeOfValue.subscribe((valueResponse => { this.typeOfValue = valueResponse }));
 
-    this.weatherService.onSendWeatherIconPath.subscribe((iconResponse => { this.iconPath = iconResponse }))
+    this.subscriptions = this.weatherService.onSendWeatherIconPath.subscribe((iconResponse => { this.iconPath = iconResponse }))
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

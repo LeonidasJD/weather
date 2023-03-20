@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { WeatherService } from '../shared/weather-service/weather.service';
 
 @Component({
@@ -6,7 +7,7 @@ import { WeatherService } from '../shared/weather-service/weather.service';
   templateUrl: './weather-details.component.html',
   styleUrls: ['./weather-details.component.css']
 })
-export class WeatherDetailsComponent {
+export class WeatherDetailsComponent implements OnDestroy {
 
   uvIndex: string;
   air: string;
@@ -21,12 +22,13 @@ export class WeatherDetailsComponent {
   visibilityMetric: number;
   visibilityImperial: number;
   typeOfValue: boolean;
+  subscriptions: Subscription
 
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit() {
 
-    this.weatherService.onSendCurrentConditions.subscribe((responseCurrentCond => {
+    this.subscriptions = this.weatherService.onSendCurrentConditions.subscribe((responseCurrentCond => {
 
       this.uvIndex = responseCurrentCond.uvIndex;
       this.precipitation = responseCurrentCond.percipitation;
@@ -41,10 +43,14 @@ export class WeatherDetailsComponent {
       this.visibilityImperial = responseCurrentCond.visibilityImperial;
     }))
 
-    this.weatherService.onSendFewDaysWeather.subscribe((responseWeather => {
+    this.subscriptions = this.weatherService.onSendFewDaysWeather.subscribe((responseWeather => {
       this.air = responseWeather.air;
     }))
 
-    this.weatherService.onSendTypeOfValue.subscribe((responseValue => { this.typeOfValue = responseValue }));
+    this.subscriptions = this.weatherService.onSendTypeOfValue.subscribe((responseValue => { this.typeOfValue = responseValue }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }
