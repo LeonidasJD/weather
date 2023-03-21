@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 
 
 
+
 const route: Routes = [
   {
     path: 'search', component: SearchBarComponent

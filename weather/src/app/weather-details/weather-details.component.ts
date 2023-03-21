@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { WeatherService } from '../shared/weather-service/weather.service';
 
+
 @Component({
   selector: 'app-weather-details',
   templateUrl: './weather-details.component.html',
@@ -48,6 +49,8 @@ export class WeatherDetailsComponent implements OnDestroy {
     }))
 
     this.subscriptions = this.weatherService.onSendTypeOfValue.subscribe((responseValue => { this.typeOfValue = responseValue }));
+
+
   }
 
   ngOnDestroy(): void {
