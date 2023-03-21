@@ -46,7 +46,7 @@ export class WeatherService {
   }
 
   getIpAddress(){
-    return this.http.get(`https://api.ipify.org/?format=json`);
+    return this.http.get('https://api.ipify.org?format=json');
   }
 
   getLocation(ipAddress: string){
