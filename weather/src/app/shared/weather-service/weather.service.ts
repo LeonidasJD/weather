@@ -5,6 +5,7 @@ import { CityModel } from '../models/city-model';
 import { CurrentConditionsModel } from '../models/current-Conditions-model';
 import { FewDaysWeatherModel } from '../models/fewDaysWeather';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +15,7 @@ export class WeatherService {
 
   weatherIconPath: string;
   baseUrl: string = 'https://dataservice.accuweather.com';
-  apiKey = 'ltcGN2J6BxLTeAJETfnDxcF8x6Pr5ThM';
+  apiKey = 'M5lEL1LhCB4nyyMEXNQAfU8i47epC7ej';
   locationApiKey = 'bb8db6b1c2c24e6d8c6f774a558ac650';
 
   onSendCity = new Subject<CityModel>();
@@ -45,7 +46,7 @@ export class WeatherService {
   }
 
   getIpAddress(){
-    return this.http.get(`https://api.ipify.org/?format=json`);
+    return this.http.get('https://api.ipify.org?format=json');
   }
 
   getLocation(ipAddress: string){
