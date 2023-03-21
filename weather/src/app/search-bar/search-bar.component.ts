@@ -27,7 +27,7 @@ export class SearchBarComponent implements OnDestroy {
   getLocationCountry: string;
   subscriptions: Subscription;
 
-  constructor(private weatherService: WeatherService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private weatherService: WeatherService,) { }
 
 
   ngOnInit() { };
@@ -171,13 +171,33 @@ export class SearchBarComponent implements OnDestroy {
   onGetLiveLocation() {
     this.weatherService.getIpAddress().subscribe((ipResponse => {
       this.ipAddress = ipResponse['ip'];
+      console.log(this.ipAddress);
+
+      this.weatherService.getLocation(this.ipAddress).subscribe(responseLocation => {
+        this.getLocationCity = responseLocation['city'];
+        this.getLocationCountry = responseLocation['country'];
+        this.city = `${this.getLocationCity},${this.getLocationCountry}`;
+        this.inputClicked = false;
+      },
+        errorResponse => {
+          switch (errorResponse.status) {
+            case 204: this.errorMessage = 'Their is no location data for the submitted IP'
+              break;
+            case 400: this.errorMessage = 'Bad request'
+              break;
+            case 401: this.errorMessage = 'Unauthorized'
+              break;
+            case 422: this.errorMessage = 'Quota reached'
+              break;
+            case 429: this.errorMessage = 'Too many requests'
+              break;
+            case 500: this.errorMessage = 'Internal server error'
+              break;
+            case 503: this.errorMessage = 'Service unavailable'
+              break;
+          }
+        })
     }));
-    this.weatherService.getLocation(this.ipAddress).subscribe((responseLocation => {
-      this.getLocationCity = responseLocation['city'];
-      this.getLocationCountry = responseLocation['country'];
-      this.city = `${this.getLocationCity},${this.getLocationCountry}`;
-      this.inputClicked = false;
-    }))
   }
 
   ngOnDestroy(): void {
