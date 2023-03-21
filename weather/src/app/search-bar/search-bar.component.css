@@ -158,6 +158,7 @@ body {
 .errorMessageDiv {
   opacity: 0;
   background-color: rgb(247, 87, 87);
+  margin-top: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 25px;

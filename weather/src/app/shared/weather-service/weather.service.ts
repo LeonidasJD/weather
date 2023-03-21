@@ -48,8 +48,8 @@ export class WeatherService {
     return this.http.get(`http://api.ipify.org/?format=json`);
   }
 
-  getLocation(ipAddress){
-    return this.http.get(`https://ipgeolocation.abstractapi.com/v1/?api_key=${this.locationApiKey}&ip_address${ipAddress}`);
+  getLocation(ipAddress: string){
+    return this.http.get(`https://ipgeolocation.abstractapi.com/v1/?api_key=${this.locationApiKey}&ip_address=${ipAddress}`);
   }
 
   setWeatherIconPath(weatherIconValue: number) { //proveramo na osnovu brojcane vrednosti ikone koja ikonica treba biti prikazana za trenutnu temp
