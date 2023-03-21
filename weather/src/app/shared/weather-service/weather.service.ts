@@ -14,7 +14,7 @@ export class WeatherService {
   constructor(private http: HttpClient) { }
 
   weatherIconPath: string;
-  baseUrl: string = 'http://dataservice.accuweather.com';
+  baseUrl: string = 'https://dataservice.accuweather.com';
   apiKey = 'ltcGN2J6BxLTeAJETfnDxcF8x6Pr5ThM';
   locationApiKey = 'bb8db6b1c2c24e6d8c6f774a558ac650';
 
