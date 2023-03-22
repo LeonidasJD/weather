@@ -19,6 +19,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 
 
+
 const route: Routes = [
   {
     path: 'search', component: SearchBarComponent
@@ -40,6 +41,7 @@ const route: Routes = [
     WeatherConditionsComponent,
     HourlyWeatherComponent,
     SpinnerComponent,
+   
    
 
 

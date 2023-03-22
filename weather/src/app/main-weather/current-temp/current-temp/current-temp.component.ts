@@ -19,6 +19,7 @@ export class CurrentTempComponent implements OnDestroy{
   weatherText: string; //pokazuje text  wremena
   iconPath: string; // putanja do ikonice koja se postavlja na osnovu temperature
   subscriptions: Subscription;
+ 
 
   constructor(private weatherService: WeatherService) { }
 
