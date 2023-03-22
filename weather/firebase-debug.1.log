@@ -1,0 +1,25 @@
+[debug] [2023-03-21T11:01:51.592Z] ----------------------------------------------------------------------
+[debug] [2023-03-21T11:01:51.594Z] Command:       D:\NodeJS\node.exe C:\Users\Milan\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-03-21T11:01:51.594Z] CLI Version:   11.24.1
+[debug] [2023-03-21T11:01:51.595Z] Platform:      win32
+[debug] [2023-03-21T11:01:51.595Z] Node Version:  v19.7.0
+[debug] [2023-03-21T11:01:51.595Z] Time:          Tue Mar 21 2023 12:01:51 GMT+0100 (Central European Standard Time)
+[debug] [2023-03-21T11:01:51.595Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-21T11:01:51.638Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-21T11:01:51.638Z] > authorizing via signed-in user (djordjevic.milan738@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\ANGULAR\weather\weather
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+

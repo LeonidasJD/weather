@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { CityModel } from '../models/city-model';
 import { CurrentConditionsModel } from '../models/current-Conditions-model';
 import { FewDaysWeatherModel } from '../models/fewDaysWeather';
+import { environment } from 'src/environments/environments.prod';
 
 
 @Injectable({
