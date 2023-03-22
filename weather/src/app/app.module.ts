@@ -12,6 +12,8 @@ import { Route, RouterModule, Routes } from '@angular/router';
 import { WeatherConditionsComponent } from './weather-conditions/weather-conditions.component';
 import { HourlyWeatherComponent } from './main-weather/hourly-weather/hourly-weather/hourly-weather.component';
 import { CommonModule } from '@angular/common';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+
 
 
 
@@ -36,7 +38,8 @@ const route: Routes = [
     WeekTempComponent,
     WeatherConditionsComponent,
     HourlyWeatherComponent,
-
+    SpinnerComponent,
+   
 
 
   ],
