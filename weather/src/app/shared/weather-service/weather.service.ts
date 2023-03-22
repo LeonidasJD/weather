@@ -16,7 +16,7 @@ export class WeatherService {
 
   weatherIconPath: string;
   baseUrl: string = 'https://dataservice.accuweather.com';
-  apiKey = 'M5lEL1LhCB4nyyMEXNQAfU8i47epC7ej';
+  apiKey = 'dlOFtY6mpG4DBQNkNNXtYGTqW0O0TF3u';
   locationApiKey = 'bb8db6b1c2c24e6d8c6f774a558ac650';
 
   onSendCity = new Subject<CityModel>();
