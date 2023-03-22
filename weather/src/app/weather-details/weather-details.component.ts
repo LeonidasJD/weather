@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { WeatherService } from '../shared/weather-service/weather.service';
+import { MapLibreEvent } from 'maplibre-gl';
 
 
 @Component({

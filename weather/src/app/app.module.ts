@@ -18,6 +18,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 
 
+
 const route: Routes = [
   {
     path: 'search', component: SearchBarComponent
