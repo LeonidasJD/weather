@@ -171,11 +171,11 @@ export class SearchBarComponent implements OnDestroy {
 
   onGetLiveLocation() {
     this.spinerIn = true;
-    this.weatherService.getIpAddress().subscribe((ipResponse => {
+    this.subscriptions = this.weatherService.getIpAddress().subscribe((ipResponse => {
       this.ipAddress = ipResponse['ip'];
       console.log(this.ipAddress);
 
-      this.weatherService.getLocation(this.ipAddress).subscribe(responseLocation => {
+      this.subscriptions = this.weatherService.getLocation(this.ipAddress).subscribe(responseLocation => {
         this.getLocationCity = responseLocation['city'];
         this.getLocationCountry = responseLocation['country'];
         this.city = `${this.getLocationCity},${this.getLocationCountry}`;
