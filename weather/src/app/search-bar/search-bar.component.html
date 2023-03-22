@@ -3,9 +3,12 @@
     <div class="search__container">
       <input [(ngModel)]="city" (click)="popUpButton()" class="search__input" type="text" #inputField
         placeholder="Add location e.g. Belgrade,Serbia" />
-        <div *ngIf="inputClicked" class="currentLocationButton" (click)="onGetLiveLocation()" >
-          <span class="locationSpan"><span><img src="assets/placeholder.png" alt="location icon" style="margin-right: 10px;"></span>Use Current Location </span>
-        </div>
+    
+
+      <div *ngIf="inputClicked" class="currentLocationButton" (click)="onGetLiveLocation()">
+        <span class="locationSpan"><span><img src="assets/placeholder.png" alt="location icon"
+              style="margin-right: 10px;"></span>Use Current Location </span>
+      </div>
     </div>
   </div>
   <div class="col-md-2">
@@ -16,6 +19,11 @@
         <button class="tempF" (click)="onFarenheit()">F</button>
       </div>
     </div>
+  </div>
+</div>
+<div class="row" style="text-align: center;" *ngIf="spinerIn">
+  <div>
+    <app-spinner></app-spinner>
   </div>
 </div>
 <div class="row">
@@ -32,11 +40,8 @@
     </div>
   </div>
 </div>
-<div class="row" *ngIf="spinerIn">
-  <div class="col-md-12 d-flex justify-content-center" style="margin-top: 40px;">
-    <div class="spinner-border" role="status">
-    </div>
-  </div>
+<div class="row" style="text-align: center;" *ngIf="spnnerIn1">
+  <app-spinner></app-spinner>
 </div>
 <div class="row ">
   <div class="col-md-12">
