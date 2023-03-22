@@ -19,6 +19,7 @@ export class SearchBarComponent implements OnDestroy {
   cityKey: string; //id grada koji sluzi za prognozu
   tempInCelsius = true;
   spinerIn = false;
+  spnnerIn1 = false;
   errorMessage = '';
   cityCreated: boolean = false;
   inputClicked: boolean = false;
@@ -48,7 +49,7 @@ export class SearchBarComponent implements OnDestroy {
       this.errorMessage = "Please insert a location !"
       this.cityCreated = false;
     } else {
-      this.spinerIn = true;
+      this.spnnerIn1 = true;
       this.errorMessage = '';
       this.cityCreated = true;
 
@@ -56,7 +57,7 @@ export class SearchBarComponent implements OnDestroy {
         response => {
           if (response[0] === undefined) {
             this.errorMessage = "Please insert a valid location !"
-            this.spinerIn = false;
+            this.spnnerIn1 = false;
             this.cityCreated = false;
           }
           console.log(response);
@@ -149,11 +150,11 @@ export class SearchBarComponent implements OnDestroy {
             this.weatherService.onSendHourlyConditions.next(hours12);
           })
 
-          this.spinerIn = false;
+          this.spnnerIn1 = false;
         },
         errorResponse => {
           console.log(errorResponse);
-          this.spinerIn = false;
+          this.spnnerIn1 = false;
           switch (errorResponse.name) {
             case 'HttpErrorResponse': this.errorMessage = 'HTTP failure response !';
               break;
@@ -169,6 +170,7 @@ export class SearchBarComponent implements OnDestroy {
   }
 
   onGetLiveLocation() {
+    this.spinerIn = true;
     this.weatherService.getIpAddress().subscribe((ipResponse => {
       this.ipAddress = ipResponse['ip'];
       console.log(this.ipAddress);
@@ -178,6 +180,7 @@ export class SearchBarComponent implements OnDestroy {
         this.getLocationCountry = responseLocation['country'];
         this.city = `${this.getLocationCity},${this.getLocationCountry}`;
         this.inputClicked = false;
+        this.spinerIn = false;
       },
         errorResponse => {
           switch (errorResponse.status) {
